@@ -87,7 +87,7 @@ Game.prototype.draw = function(ctx) {
       ctx.strokeStyle = "white";
       ctx.moveTo(0, this.DIM_Y * (i+1)/9);
       ctx.lineTo(this.DIM_X ,this.DIM_Y * (i+1)/9);
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 0.1;
       ctx.stroke();
       ctx.closePath();
     }
@@ -96,7 +96,7 @@ Game.prototype.draw = function(ctx) {
       ctx.strokeStyle = "white";
       ctx.moveTo(this.DIM_X * (i+1)/9, 0);
       ctx.lineTo(this.DIM_X * (i+1)/9,this.DIM_Y);
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 0.1;
       ctx.stroke();
       ctx.closePath();
     }

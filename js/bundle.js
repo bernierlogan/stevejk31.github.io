@@ -75,10 +75,12 @@
 	var Game = function (DIM_X, DIM_Y, ctx) {
 	  this.DIM_X = DIM_X;
 	  this.DIM_Y = DIM_Y;
+	  this.gameOver = false;
+	  this.gameWon = false;
 	  this.barrels = [];
 	  this.addBarrel();
 	  this.player = new Player({
-	      pos: [this.DIM_X * 0.02, this.DIM_Y * 0.90],
+	      pos: [this.DIM_X * 0.02, this.DIM_Y * 0.89],
 	      game:this
 	    });
 	  this.start(ctx);
@@ -89,7 +91,6 @@
 	  // keep track of keyboard presses
 	  document.addEventListener("keydown", function(e) {
 	    keystate[e.keyCode] = true;
-	    console.log(e.keyCode);
 	  });
 	  document.addEventListener("keyup", function(e) {
 	    delete keystate[e.keyCode];
@@ -104,16 +105,10 @@
 	    }
 	    idx ++;
 	
-	    //this will call our animateCallback again, but only when the browser
-	    //is ready, usually every 1/60th of a second
 	    requestAnimationFrame(animateCallback);
 	
-	    //if we didn't know about requestAnimationFrame, we could use setTimeout
-	    //setTimeout(animateCallback, 1000/60);
 	  }.bind(this);
 	
-	  //this will cause the first render and start the endless triggering of
-	  //the function using requestAnimationFrame
 	  animateCallback();
 	};
 	
@@ -122,79 +117,127 @@
 	};
 	
 	Game.prototype.draw = function(ctx) {
-	  ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
-	  ctx.fillStyle = "black";
-	  ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
+	  if (this.gameWon) {
+	    ctx.beginPath();
+	    ctx.font = "120px Inconsolata";
+	    ctx.fillStyle = "#0000FF";
+	    ctx.fillText("Game Won!", this.DIM_X/5, this.DIM_Y/2);
+	    ctx.closePath();
+	  } else if (this.gameOver) {
+	    ctx.beginPath();
+	    ctx.font = "120px Inconsolata";
+	    ctx.fillStyle = "#0000FF";
+	    ctx.fillText("Game Over", this.DIM_X/5, this.DIM_Y/2);
+	    ctx.closePath();
 	
-	  var beam1 = new Beam({
-	    startPos: [0, this.DIM_Y * 0.1],
-	    endPos: [this.DIM_X  * 0.8, this.DIM_Y * 0.15],
-	    game: this
-	  });
-	  var beam2 = new Beam({
-	    startPos: [this.DIM_X * 0.2, this.DIM_Y * 0.3],
-	    endPos: [this.DIM_X, this.DIM_Y * 0.25],
-	    game: this
-	  });
-	  var beam3 = new Beam({
-	    startPos: [0, this.DIM_Y * 0.4],
-	    endPos: [this.DIM_X  * 0.8, this.DIM_Y * 0.45],
-	    game: this
-	  });
-	  var beam4 = new Beam({
-	    startPos: [this.DIM_X * 0.2, this.DIM_Y * 0.6 ],
-	    endPos: [this.DIM_X , this.DIM_Y * 0.55],
-	    game: this
-	  });
-	  var beam5 = new Beam({
-	    startPos: [0, this.DIM_Y * 0.7],
-	    endPos: [this.DIM_X  * 0.8, this.DIM_Y * 0.75],
-	    game: this
-	  });
-	  var beam6 = new Beam({
-	    startPos: [0, this.DIM_Y * 0.90],
-	    endPos: [this.DIM_X, this.DIM_Y * 0.85 ],
-	    game: this
-	  });
+	  } else {
 	
-	  beam1.draw(ctx);
-	  beam2.draw(ctx);
-	  beam3.draw(ctx);
-	  beam4.draw(ctx);
-	  beam5.draw(ctx);
-	  beam6.draw(ctx);
+	    ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
+	    ctx.fillStyle = "orange";
+	    ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
+	    ctx.fillStyle = "black";
+	    ctx.fillRect(4,4,this.DIM_X-8,this.DIM_Y-8);
+	    //home
+	    ctx.beginPath();
+	    ctx.fillStyle = "#993300";
+	    ctx.fillRect(30,40,50,50);
+	    ctx.closePath();
+	    ctx.beginPath();
+	    ctx.fillStyle = "#993300";
+	    ctx.moveTo(25, 40);
+	    ctx.lineTo(85, 40);
+	    ctx.lineTo(55, 10);
+	    ctx.fill();
+	    // grid
+	    for (var i = 0; i < 9; i++) {
+	      ctx.beginPath();
+	      ctx.strokeStyle = "white";
+	      ctx.moveTo(0, this.DIM_Y * (i+1)/9);
+	      ctx.lineTo(this.DIM_X ,this.DIM_Y * (i+1)/9);
+	      ctx.lineWidth = 1;
+	      ctx.stroke();
+	      ctx.closePath();
+	    }
+	    for (var i = 0; i < 9; i++) {
+	      ctx.beginPath();
+	      ctx.strokeStyle = "white";
+	      ctx.moveTo(this.DIM_X * (i+1)/9, 0);
+	      ctx.lineTo(this.DIM_X * (i+1)/9,this.DIM_Y);
+	      ctx.lineWidth = 1;
+	      ctx.stroke();
+	      ctx.closePath();
+	    }
+	    var beam1 = new Beam({
+	      startPos: [0, this.DIM_Y * 0.1],
+	      endPos: [this.DIM_X  * 0.8, this.DIM_Y * 0.15],
+	      game: this
+	    });
+	    var beam2 = new Beam({
+	      startPos: [this.DIM_X * 0.2, this.DIM_Y * 0.3],
+	      endPos: [this.DIM_X, this.DIM_Y * 0.25],
+	      game: this
+	    });
+	    var beam3 = new Beam({
+	      startPos: [0, this.DIM_Y * 0.4],
+	      endPos: [this.DIM_X  * 0.8, this.DIM_Y * 0.45],
+	      game: this
+	    });
+	    var beam4 = new Beam({
+	      startPos: [this.DIM_X * 0.2, this.DIM_Y * 0.6 ],
+	      endPos: [this.DIM_X , this.DIM_Y * 0.55],
+	      game: this
+	    });
+	    var beam5 = new Beam({
+	      startPos: [0, this.DIM_Y * 0.7],
+	      endPos: [this.DIM_X  * 0.8, this.DIM_Y * 0.75],
+	      game: this
+	    });
+	    var beam6 = new Beam({
+	      startPos: [0, this.DIM_Y * 0.90],
+	      endPos: [this.DIM_X, this.DIM_Y * 0.85 ],
+	      game: this
+	    });
 	
-	  var ladder1 = new Ladder({
-	    pos: [655, 130],
-	    game: this
-	  });
-	  var ladder2 = new Ladder({
-	    pos: [230, 265],
-	    game: this
-	  });
-	  var ladder3 = new Ladder({
-	    pos: [655, 400],
-	    game: this
-	  });
-	  var ladder4 = new Ladder({
-	    pos: [230, 535],
-	    game: this
-	  });
-	  var ladder5 = new Ladder({
-	    pos: [655, 670],
-	    game: this
-	  });
+	    beam1.draw(ctx);
+	    beam2.draw(ctx);
+	    beam3.draw(ctx);
+	    beam4.draw(ctx);
+	    beam5.draw(ctx);
+	    beam6.draw(ctx);
 	
-	  ladder1.draw(ctx);
-	  ladder2.draw(ctx);
-	  ladder3.draw(ctx);
-	  ladder4.draw(ctx);
-	  ladder5.draw(ctx);
+	    var ladder1 = new Ladder({
+	      pos: [655, 130],
+	      game: this
+	    });
+	    var ladder2 = new Ladder({
+	      pos: [230, 265],
+	      game: this
+	    });
+	    var ladder3 = new Ladder({
+	      pos: [655, 400],
+	      game: this
+	    });
+	    var ladder4 = new Ladder({
+	      pos: [230, 535],
+	      game: this
+	    });
+	    var ladder5 = new Ladder({
+	      pos: [655, 670],
+	      game: this
+	    });
 	
-	  this.player.draw(ctx);
+	    ladder1.draw(ctx);
+	    ladder2.draw(ctx);
+	    ladder3.draw(ctx);
+	    ladder4.draw(ctx);
+	    ladder5.draw(ctx);
 	
-	  for (var i = 0; i < this.barrels.length; i++) {
-	    this.barrels[i].draw(ctx);
+	    this.player.draw(ctx);
+	
+	    for (var i = 0; i < this.barrels.length; i++) {
+	      this.barrels[i].draw(ctx);
+	    }
+	
 	  }
 	};
 	
@@ -228,9 +271,17 @@
 	Game.prototype.checkCollisions = function () {
 	  var game = this;
 	  for (var i = 0; i < this.barrels.length; i++) {
-	    if (distance(this.barrels[i].pos,  this.player.pos) < 24){
-	      console.log("you've been hit!");
+	    if (distance(this.barrels[i].pos,  this.player.pos) < 23){
+	      this.gameOver = true;
 	    }
+	  }
+	  if (this.player.pos[0] < 5 || this.player.pos[0] > this.DIM_X - 5 ||
+	    this.player.pos[1] < 5 || this.player.pos[1] > this.DIM_Y - 5 ) {
+	    this.gameOver = true;
+	  }
+	  if (this.player.pos[0] > 5 && this.player.pos[0] < 80 &&
+	    this.player.pos[1] > 5 && this.player.pos[1] < 80 ) {
+	    this.gameWon = true;
 	  }
 	};
 	
@@ -461,15 +512,53 @@
 	  this.climbing = false;
 	  this.fall = false;
 	  this.timeFalling = 0;
-	  this.level = 0;
 	};
 	
 	Player.prototype.draw = function (ctx) {
+	  //body
 	  ctx.beginPath();
 	  ctx.strokeStyle = this.color;
-	  ctx.moveTo(this.pos[0],this.pos[1]);
-	  ctx.lineTo(this.pos[0],this.pos[1]-50);
 	  ctx.lineWidth = 12;
+	  ctx.moveTo(this.pos[0],this.pos[1]-25);
+	  ctx.lineTo(this.pos[0],this.pos[1]-50);
+	  ctx.stroke();
+	  ctx.closePath();
+	  // //arms
+	  ctx.beginPath();
+	  ctx.strokeStyle = this.color;
+	  ctx.lineWidth = 6;
+	  ctx.moveTo(this.pos[0] + 15,this.pos[1]-35);
+	  ctx.lineTo(this.pos[0] + 11,this.pos[1]-50);
+	  ctx.stroke();
+	  ctx.closePath();
+	  ctx.beginPath();
+	  ctx.strokeStyle = this.color;
+	  ctx.lineWidth = 6;
+	  ctx.moveTo(this.pos[0] -14,this.pos[1]-35);
+	  ctx.lineTo(this.pos[0] -10,this.pos[1]-50);
+	  ctx.stroke();
+	  ctx.closePath();
+	  // legs
+	  ctx.beginPath();
+	  ctx.strokeStyle = this.color;
+	  ctx.lineWidth = 6;
+	  ctx.moveTo(this.pos[0] + 7,this.pos[1]+2);
+	  ctx.lineTo(this.pos[0] + 3,this.pos[1]-22);
+	  ctx.stroke();
+	  ctx.closePath();
+	  ctx.beginPath();
+	  ctx.strokeStyle = this.color;
+	  ctx.lineWidth = 6;
+	  ctx.moveTo(this.pos[0] -7,this.pos[1]+2);
+	  ctx.lineTo(this.pos[0] -3,this.pos[1]-22);
+	  ctx.stroke();
+	  ctx.closePath();
+	  // // head
+	  ctx.beginPath();
+	  ctx.strokeStyle = this.color;
+	  ctx.lineWidth = 10;
+	  ctx.moveTo(this.pos[0],this.pos[1] - 55);
+	  ctx.lineTo(this.pos[0],this.pos[1] - 65);
 	  ctx.stroke();
 	  ctx.closePath();
 	};
@@ -478,21 +567,21 @@
 	var DownArrow = 40;
 	var LeftArrow = 37;
 	var RightArrow = 39;
-	var space = 32;
+	var space = 32;90
 	var climbingPos = function (pos) {
-	  if (pos[0] > 645 && pos[0] < 667 && pos[1] > 762 && pos[1] < 779) {
+	  if (pos[0] > 645 && pos[0] < 675 && pos[1] > 740 && pos[1] < 790) {
 	    return true;
 	  }
-	  if (pos[0] > 215 && pos[0] < 240 && pos[1] > 635 && pos[1] < 648) {
+	  if (pos[0] > 210 && pos[0] < 240 && pos[1] > 600 && pos[1] < 650) {
 	    return true;
 	  }
-	  if (pos[0] > 645 && pos[0] < 667 && pos[1] > 492 && pos[1] < 515) {
+	  if (pos[0] > 645 && pos[0] < 675 && pos[1] > 475 && pos[1] < 525) {
 	    return true;
 	  }
-	  if (pos[0] > 215 && pos[0] < 240 && pos[1] > 360 && pos[1] < 379) {
+	  if (pos[0] > 210 && pos[0] < 240 && pos[1] > 360 && pos[1] < 395) {
 	    return true;
 	  }
-	  if (pos[0] > 645 && pos[0] < 667 && pos[1] > 218 && pos[1] < 247) {
+	  if (pos[0] > 645 && pos[0] < 675 && pos[1] > 200 && pos[1] < 249) {
 	    return true;
 	  }
 	  return false;
@@ -500,42 +589,42 @@
 	
 	var move = function (pos, keystate) {
 	  var vel = [0,0];
-	  if (Math.floor(pos[1]) < 150 && Math.floor(pos[1]) > 0 &&
+	  if (Math.floor(pos[1]) < 190 && Math.floor(pos[1]) > 0 &&
 	  (keystate[RightArrow] || keystate[LeftArrow])) {
 	    if (keystate[RightArrow] ) {
 	      vel = [2.025, 0.120];
 	    } else if ( keystate[LeftArrow]) {
 	      vel = [-2.025, -0.120];
 	    }
-	  } else if (Math.floor(pos[1]) > 208 && Math.floor(pos[1]) < 275 &&
+	  } else if (Math.floor(pos[1]) > 200 && Math.floor(pos[1]) < 310 &&
 	  (keystate[RightArrow] || keystate[LeftArrow])) {
 	    if (keystate[RightArrow] ) {
 	      vel = [2.025, -0.120];
 	    } else if ( keystate[LeftArrow]) {
 	      vel = [-2.025, 0.120];
 	    }
-	  } else if (Math.floor(pos[1]) > 305 && Math.floor(pos[1]) < 440 &&
+	  } else if (Math.floor(pos[1]) > 320 && Math.floor(pos[1]) < 450 &&
 	  (keystate[RightArrow] || keystate[LeftArrow])) {
 	    if (keystate[RightArrow] ) {
 	      vel = [2.025, 0.120];
 	    } else if ( keystate[LeftArrow]) {
 	      vel = [-2.025, -0.120];
 	    }
-	  } else if (Math.floor(pos[1]) > 425 && Math.floor(pos[1]) < 600 &&
+	  } else if (Math.floor(pos[1]) > 455 && Math.floor(pos[1]) < 600 &&
 	  (keystate[RightArrow] || keystate[LeftArrow])) {
 	    if (keystate[RightArrow] ) {
 	      vel = [2.025, -0.120];
 	    } else if ( keystate[LeftArrow]) {
 	      vel = [-2.025, 0.120];
 	    }
-	  } else if (Math.floor(pos[1]) > 620 && Math.floor(pos[1]) < 678 &&
+	  } else if (Math.floor(pos[1]) > 620 && Math.floor(pos[1]) < 720 &&
 	  (keystate[RightArrow] || keystate[LeftArrow])) {
 	    if (keystate[RightArrow] ) {
 	      vel = [2.025, 0.120];
 	    } else if ( keystate[LeftArrow]) {
 	      vel = [-2.025, -0.120];
 	    }
-	  } else if (Math.floor(pos[1]) > 740 && Math.floor(pos[1]) < 900 &&
+	  } else if (Math.floor(pos[1]) > 720 && Math.floor(pos[1]) < 900 &&
 	  (keystate[RightArrow] || keystate[LeftArrow])) {
 	    if (keystate[RightArrow] ) {
 	      vel = [2.025, -0.110];
@@ -551,44 +640,60 @@
 	};
 	
 	Player.prototype.move = function (keystate) {
-	  if (keystate[81]) {
-	    console.log(this.pos);
 	
-	  }
-	  if (Math.floor(this.pos[0]) >= 723 && Math.floor(this.pos[0]) <= 740 && this.vel[1] > 0 && this.level > 0){
-	    this.fall = true;
-	  } else if (Math.floor(this.pos[0]) >= 145 && Math.floor(this.pos[0]) <= 170 && this.vel[1] > 0 && this.level > 0){
-	    this.fall = true;
+	  if (Math.floor(this.pos[0]) >= 723 && Math.floor(this.pos[0]) <= 880 &&
+	      this.vel[1] > 0 ){
+	    if (Math.floor(this.pos[1] <= 683) && Math.floor(this.pos[1] >= 653)){
+	      this.fall = true;
+	    }
+	    if (Math.floor(this.pos[1] <= 415) && Math.floor(this.pos[1] >= 385)){
+	      this.fall = true;
+	    }
+	    if (Math.floor(this.pos[1] <= 150) && Math.floor(this.pos[1] >= 100)){
+	      this.fall = true;
+	    }
+	  } else if (Math.floor(this.pos[0]) >= 20 && Math.floor(this.pos[0]) <= 170 &&
+	      this.vel[1] > 0 ){
+	    if (Math.floor(this.pos[1] <= 550) && Math.floor(this.pos[1] >= 520)){
+	      this.fall = true;
+	    }
+	    if (Math.floor(this.pos[1] <= 281) && Math.floor(this.pos[1] >= 240)){
+	      this.fall = true;
+	    }
 	  }
 	  if (climbingPos(this.pos) && keystate[UpArrow] && !this.climbing) {
 	    this.climbing = true;
 	    this.beforeClimbingPos = this.pos;
+	    this.climbingCounter = 0;
 	  }
 	  if (keystate[space] && this.jumping == false) {
-	    this.jumping = keystate[space];
-	    this.velStore = this.vel;
+	    this.timeJumping ++;
+	    if (this.timeJumping >= 5) {
+	      this.jumping = keystate[space];
+	      if (this.vel[0] == 0) {
+	        this.velStore = [0,0];
+	      } else {
+	        this.velStore = this.vel;
+	      }
+	      this.timeJumping = 0;
+	    }
 	  }
 	  if (this.fall) {
 	    this.timeFalling ++;
-	    if (this.timeFalling > 0 && this.timeFalling < 26 ) {
-	      this.vel = [0,3.93];
-	    } else if (this.timeFalling > 26) {
+	    if (this.timeFalling > 0 && this.timeFalling < 25.9 ) {
+	      this.vel = [0,3.96];
+	    } else if (this.timeFalling > 25.9) {
 	      this.fall = false;
 	      this.timeFalling = 0;
 	      this.vel = [0,0];
-	      this.level --;
 	    }
 	
 	  } else if (this.climbing) {
-	    if (this.beforeClimbingPos[1]- this.pos[1] >= 107 ) {
-	      this.level ++;
-	      this.climbing = false;
-	    }
 	    if (keystate[UpArrow]) {
 	      this.vel = [0,-2];
 	    } else if (keystate[DownArrow]) {
 	      if (this.pos[1] < this.beforeClimbingPos[1]) {
-	        this.vel = [0,2];
+	        this.vel = [0,1];
 	      }
 	      if (this.pos[1] > this.beforeClimbingPos[1]) {
 	        this.pos = this.beforeClimbingPos;
@@ -597,18 +702,29 @@
 	      }
 	    } else {
 	      this.vel = [0,0]
-	      //
+	    }
+	    if (this.beforeClimbingPos[1]- this.pos[1] >= 107 ) {
+	      this.pos = [this.beforeClimbingPos[0], this.beforeClimbingPos[1]-107];
+	      this.climbingCounter ++;
+	    }
+	    if (this.climbingCounter > 5) {
+	      this.vel = 0;
+	      this.climbingCounter = 0;
+	      this.climbing = false;
 	    }
 	  } else if (this.jumping) {
 	    this.timeJumping ++;
 	    if (this.timeJumping > 0 && this.timeJumping < 30) {
-	      this.vel = [this.velStore[0],-2.3 + this.velStore[1]];
+	      this.vel = [this.velStore[0]*0.5, -2.3 + this.velStore[1]*0.5];
 	    }
 	    if (this.timeJumping > 30 && this.timeJumping < 40) {
-	      this.vel = [this.velStore[0],0 + this.velStore[1]];
+	        this.vel = [this.velStore[0]*0.5, 0 + this.velStore[1]*0.5];
+	
 	    }
-	    if (this.timeJumping > 40 && this.timeJumping < 70){
-	      this.vel = [this.velStore[0],2.3 + this.velStore[1]];
+	    if (this.timeJumping > 40 && this.timeJumping < 80){
+	      this.vel = [0,2.3];
+	        this.vel = [this.velStore[0]*0.5, 2.3 + this.velStore[1]*0.5];
+	
 	    }
 	    if (this.timeJumping > 70) {
 	      this.jumping = false;
@@ -620,8 +736,15 @@
 	
 	  }
 	  var tempPos = [ this.pos[0]+this.vel[0],  this.pos[1]+this.vel[1]];
-	  if (tempPos[0] > 5 && tempPos[0] < 895 && tempPos[1] > 5 && tempPos[1] < 895) {
+	  if (tempPos[0] > 0 && tempPos[0] < 900 && tempPos[1] > 0 && tempPos[1] < 900) {
 	    this.pos = tempPos;
+	  } else {
+	    if (tempPos[0] > 0 && tempPos[0] < 900) {
+	      this.pos[0] = tempPos[0];
+	    }
+	    if (tempPos[1] > 0 && tempPos[1] < 900) {
+	      this.pos[1] = tempPos[1];
+	    }
 	  }
 	};
 	

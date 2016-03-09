@@ -8,10 +8,12 @@ var Player = require('./player');
 var Game = function (DIM_X, DIM_Y, ctx) {
   this.DIM_X = DIM_X;
   this.DIM_Y = DIM_Y;
+  this.gameOver = false;
+  this.gameWon = false;
   this.barrels = [];
   this.addBarrel();
   this.player = new Player({
-      pos: [this.DIM_X * 0.02, this.DIM_Y * 0.90],
+      pos: [this.DIM_X * 0.02, this.DIM_Y * 0.89],
       game:this
     });
   this.start(ctx);
@@ -22,7 +24,6 @@ Game.prototype.start = function (ctx) {
   // keep track of keyboard presses
   document.addEventListener("keydown", function(e) {
     keystate[e.keyCode] = true;
-    console.log(e.keyCode);
   });
   document.addEventListener("keyup", function(e) {
     delete keystate[e.keyCode];
@@ -37,16 +38,10 @@ Game.prototype.start = function (ctx) {
     }
     idx ++;
 
-    //this will call our animateCallback again, but only when the browser
-    //is ready, usually every 1/60th of a second
     requestAnimationFrame(animateCallback);
 
-    //if we didn't know about requestAnimationFrame, we could use setTimeout
-    //setTimeout(animateCallback, 1000/60);
   }.bind(this);
 
-  //this will cause the first render and start the endless triggering of
-  //the function using requestAnimationFrame
   animateCallback();
 };
 
@@ -55,79 +50,127 @@ Game.prototype.addBarrel = function(ctx) {
 };
 
 Game.prototype.draw = function(ctx) {
-  ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
-  ctx.fillStyle = "black";
-  ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
+  if (this.gameWon) {
+    ctx.beginPath();
+    ctx.font = "120px Inconsolata";
+    ctx.fillStyle = "#0000FF";
+    ctx.fillText("Game Won!", this.DIM_X/5, this.DIM_Y/2);
+    ctx.closePath();
+  } else if (this.gameOver) {
+    ctx.beginPath();
+    ctx.font = "120px Inconsolata";
+    ctx.fillStyle = "#0000FF";
+    ctx.fillText("Game Over", this.DIM_X/5, this.DIM_Y/2);
+    ctx.closePath();
 
-  var beam1 = new Beam({
-    startPos: [0, this.DIM_Y * 0.1],
-    endPos: [this.DIM_X  * 0.8, this.DIM_Y * 0.15],
-    game: this
-  });
-  var beam2 = new Beam({
-    startPos: [this.DIM_X * 0.2, this.DIM_Y * 0.3],
-    endPos: [this.DIM_X, this.DIM_Y * 0.25],
-    game: this
-  });
-  var beam3 = new Beam({
-    startPos: [0, this.DIM_Y * 0.4],
-    endPos: [this.DIM_X  * 0.8, this.DIM_Y * 0.45],
-    game: this
-  });
-  var beam4 = new Beam({
-    startPos: [this.DIM_X * 0.2, this.DIM_Y * 0.6 ],
-    endPos: [this.DIM_X , this.DIM_Y * 0.55],
-    game: this
-  });
-  var beam5 = new Beam({
-    startPos: [0, this.DIM_Y * 0.7],
-    endPos: [this.DIM_X  * 0.8, this.DIM_Y * 0.75],
-    game: this
-  });
-  var beam6 = new Beam({
-    startPos: [0, this.DIM_Y * 0.90],
-    endPos: [this.DIM_X, this.DIM_Y * 0.85 ],
-    game: this
-  });
+  } else {
 
-  beam1.draw(ctx);
-  beam2.draw(ctx);
-  beam3.draw(ctx);
-  beam4.draw(ctx);
-  beam5.draw(ctx);
-  beam6.draw(ctx);
+    ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
+    ctx.fillStyle = "orange";
+    ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
+    ctx.fillStyle = "black";
+    ctx.fillRect(4,4,this.DIM_X-8,this.DIM_Y-8);
+    //home
+    ctx.beginPath();
+    ctx.fillStyle = "#993300";
+    ctx.fillRect(30,40,50,50);
+    ctx.closePath();
+    ctx.beginPath();
+    ctx.fillStyle = "#993300";
+    ctx.moveTo(25, 40);
+    ctx.lineTo(85, 40);
+    ctx.lineTo(55, 10);
+    ctx.fill();
+    // grid
+    for (var i = 0; i < 9; i++) {
+      ctx.beginPath();
+      ctx.strokeStyle = "white";
+      ctx.moveTo(0, this.DIM_Y * (i+1)/9);
+      ctx.lineTo(this.DIM_X ,this.DIM_Y * (i+1)/9);
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.closePath();
+    }
+    for (var i = 0; i < 9; i++) {
+      ctx.beginPath();
+      ctx.strokeStyle = "white";
+      ctx.moveTo(this.DIM_X * (i+1)/9, 0);
+      ctx.lineTo(this.DIM_X * (i+1)/9,this.DIM_Y);
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.closePath();
+    }
+    var beam1 = new Beam({
+      startPos: [0, this.DIM_Y * 0.1],
+      endPos: [this.DIM_X  * 0.8, this.DIM_Y * 0.15],
+      game: this
+    });
+    var beam2 = new Beam({
+      startPos: [this.DIM_X * 0.2, this.DIM_Y * 0.3],
+      endPos: [this.DIM_X, this.DIM_Y * 0.25],
+      game: this
+    });
+    var beam3 = new Beam({
+      startPos: [0, this.DIM_Y * 0.4],
+      endPos: [this.DIM_X  * 0.8, this.DIM_Y * 0.45],
+      game: this
+    });
+    var beam4 = new Beam({
+      startPos: [this.DIM_X * 0.2, this.DIM_Y * 0.6 ],
+      endPos: [this.DIM_X , this.DIM_Y * 0.55],
+      game: this
+    });
+    var beam5 = new Beam({
+      startPos: [0, this.DIM_Y * 0.7],
+      endPos: [this.DIM_X  * 0.8, this.DIM_Y * 0.75],
+      game: this
+    });
+    var beam6 = new Beam({
+      startPos: [0, this.DIM_Y * 0.90],
+      endPos: [this.DIM_X, this.DIM_Y * 0.85 ],
+      game: this
+    });
 
-  var ladder1 = new Ladder({
-    pos: [655, 130],
-    game: this
-  });
-  var ladder2 = new Ladder({
-    pos: [230, 265],
-    game: this
-  });
-  var ladder3 = new Ladder({
-    pos: [655, 400],
-    game: this
-  });
-  var ladder4 = new Ladder({
-    pos: [230, 535],
-    game: this
-  });
-  var ladder5 = new Ladder({
-    pos: [655, 670],
-    game: this
-  });
+    beam1.draw(ctx);
+    beam2.draw(ctx);
+    beam3.draw(ctx);
+    beam4.draw(ctx);
+    beam5.draw(ctx);
+    beam6.draw(ctx);
 
-  ladder1.draw(ctx);
-  ladder2.draw(ctx);
-  ladder3.draw(ctx);
-  ladder4.draw(ctx);
-  ladder5.draw(ctx);
+    var ladder1 = new Ladder({
+      pos: [655, 130],
+      game: this
+    });
+    var ladder2 = new Ladder({
+      pos: [230, 265],
+      game: this
+    });
+    var ladder3 = new Ladder({
+      pos: [655, 400],
+      game: this
+    });
+    var ladder4 = new Ladder({
+      pos: [230, 535],
+      game: this
+    });
+    var ladder5 = new Ladder({
+      pos: [655, 670],
+      game: this
+    });
 
-  this.player.draw(ctx);
+    ladder1.draw(ctx);
+    ladder2.draw(ctx);
+    ladder3.draw(ctx);
+    ladder4.draw(ctx);
+    ladder5.draw(ctx);
 
-  for (var i = 0; i < this.barrels.length; i++) {
-    this.barrels[i].draw(ctx);
+    this.player.draw(ctx);
+
+    for (var i = 0; i < this.barrels.length; i++) {
+      this.barrels[i].draw(ctx);
+    }
+
   }
 };
 
@@ -161,9 +204,17 @@ var distance = function(pos1, pos2) {
 Game.prototype.checkCollisions = function () {
   var game = this;
   for (var i = 0; i < this.barrels.length; i++) {
-    if (distance(this.barrels[i].pos,  this.player.pos) < 24){
-      console.log("you've been hit!");
+    if (distance(this.barrels[i].pos,  this.player.pos) < 23){
+      this.gameOver = true;
     }
+  }
+  if (this.player.pos[0] < 5 || this.player.pos[0] > this.DIM_X - 5 ||
+    this.player.pos[1] < 5 || this.player.pos[1] > this.DIM_Y - 5 ) {
+    this.gameOver = true;
+  }
+  if (this.player.pos[0] > 5 && this.player.pos[0] < 80 &&
+    this.player.pos[1] > 5 && this.player.pos[1] < 80 ) {
+    this.gameWon = true;
   }
 };
 

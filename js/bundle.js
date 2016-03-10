@@ -617,7 +617,7 @@
 	    } else if ( keystate[LeftArrow]) {
 	      vel = [-2.025, 0.120];
 	    }
-	  } else if (Math.floor(pos[1]) > 620 && Math.floor(pos[1]) < 720 &&
+	  } else if (Math.floor(pos[1]) > 600 && Math.floor(pos[1]) < 720 &&
 	  (keystate[RightArrow] || keystate[LeftArrow])) {
 	    if (keystate[RightArrow] ) {
 	      vel = [2.025, 0.120];

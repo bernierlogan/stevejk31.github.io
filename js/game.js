@@ -57,9 +57,14 @@ Game.prototype.addBarrel = function(ctx) {
 Game.prototype.draw = function(ctx) {
   if (this.gameStart) {
     ctx.beginPath();
-    ctx.font = "120px Inconsolata";
+    ctx.font = "12px Inconsolata";
     ctx.fillStyle = "#0000FF";
-    ctx.fillText("Instructions: \n[←] to move blocko left \n[→] to move blocko right \n[↑] to climb the ladder \n[space] to jump", this.DIM_X/5, this.DIM_Y/2);
+    ctx.fillText("Instructions:", this.DIM_X/5, this.DIM_Y/7);
+    ctx.fillText("[←] to move blocko left", this.DIM_X/5, this.DIM_Y*2/7);
+    ctx.fillText("[→] to move blocko right", this.DIM_X/5, this.DIM_Y*3/7);
+    ctx.fillText("[↑] to climb the ladder", this.DIM_X/5, this.DIM_Y*4/7);
+    ctx.fillText("[space] to jump", this.DIM_X/5, this.DIM_Y*5/7);
+    ctx.fillText("click HERE to start", this.DIM_X/5, this.DIM_Y*6/7);
     ctx.closePath();
   } else if (this.gameWon) {
     ctx.beginPath();

@@ -29,10 +29,6 @@ Game.prototype.start = function (ctx) {
   document.addEventListener("keyup", function(e) {
     delete keystate[e.keyCode];
   });
-  var can = document.getElementById("canvas");
-  can.addEventListener("click", function(e){
-    this.gameStart = false;
-  });
   var idx = 0;
   var animateCallback = function(){
     this.step(keystate);
@@ -56,15 +52,19 @@ Game.prototype.addBarrel = function(ctx) {
 
 Game.prototype.draw = function(ctx) {
   if (this.gameStart) {
+    ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
+    ctx.fillStyle = "orange";
+    ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
+    ctx.fillStyle = "black";
     ctx.beginPath();
-    ctx.font = "12px Inconsolata";
+    ctx.font = "20px Inconsolata";
     ctx.fillStyle = "#0000FF";
     ctx.fillText("Instructions:", this.DIM_X/5, this.DIM_Y/7);
     ctx.fillText("[←] to move blocko left", this.DIM_X/5, this.DIM_Y*2/7);
     ctx.fillText("[→] to move blocko right", this.DIM_X/5, this.DIM_Y*3/7);
     ctx.fillText("[↑] to climb the ladder", this.DIM_X/5, this.DIM_Y*4/7);
     ctx.fillText("[space] to jump", this.DIM_X/5, this.DIM_Y*5/7);
-    ctx.fillText("click HERE to start", this.DIM_X/5, this.DIM_Y*6/7);
+    ctx.fillText("press enter to start", this.DIM_X/5, this.DIM_Y*6/7);
     ctx.closePath();
   } else if (this.gameWon) {
     ctx.beginPath();
@@ -197,6 +197,9 @@ Game.prototype.moveObjects = function(){
 };
 //
 Game.prototype.step = function(keystate){
+  if (keystate[13]) {
+    this.gameStart = false;
+  }
   this.moveObjects();
   this.player.move(keystate);
   this.checkCollisions();

@@ -213,7 +213,7 @@ Game.prototype.checkCollisions = function () {
     this.gameOver = true;
   }
   if (this.player.pos[0] > 5 && this.player.pos[0] < 90 &&
-    this.player.pos[1] > 5 && this.player.pos[1] < 90 ) {
+    this.player.pos[1] > 5 && this.player.pos[1] < 100 ) {
     this.gameWon = true;
   }
 };

@@ -154,7 +154,7 @@
 	      ctx.strokeStyle = "white";
 	      ctx.moveTo(0, this.DIM_Y * (i+1)/9);
 	      ctx.lineTo(this.DIM_X ,this.DIM_Y * (i+1)/9);
-	      ctx.lineWidth = 1;
+	      ctx.lineWidth = 0.1;
 	      ctx.stroke();
 	      ctx.closePath();
 	    }
@@ -163,7 +163,7 @@
 	      ctx.strokeStyle = "white";
 	      ctx.moveTo(this.DIM_X * (i+1)/9, 0);
 	      ctx.lineTo(this.DIM_X * (i+1)/9,this.DIM_Y);
-	      ctx.lineWidth = 1;
+	      ctx.lineWidth = 0.1;
 	      ctx.stroke();
 	      ctx.closePath();
 	    }
@@ -279,8 +279,8 @@
 	    this.player.pos[1] < 5 || this.player.pos[1] > this.DIM_Y - 5 ) {
 	    this.gameOver = true;
 	  }
-	  if (this.player.pos[0] > 5 && this.player.pos[0] < 80 &&
-	    this.player.pos[1] > 5 && this.player.pos[1] < 80 ) {
+	  if (this.player.pos[0] > 5 && this.player.pos[0] < 90 &&
+	    this.player.pos[1] > 5 && this.player.pos[1] < 100 ) {
 	    this.gameWon = true;
 	  }
 	};

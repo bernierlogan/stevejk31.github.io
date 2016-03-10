@@ -77,6 +77,7 @@
 	  this.DIM_Y = DIM_Y;
 	  this.gameOver = false;
 	  this.gameWon = false;
+	  this.instructionsRendered = false;
 	  this.gameStart = true;
 	  this.barrels = [];
 	  this.addBarrel();
@@ -119,20 +120,21 @@
 	
 	Game.prototype.draw = function(ctx) {
 	  if (this.gameStart) {
-	    ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
-	    ctx.fillStyle = "orange";
-	    ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
-	    ctx.fillStyle = "black";
-	    ctx.beginPath();
-	    ctx.font = "20px Inconsolata";
-	    ctx.fillStyle = "#0000FF";
-	    ctx.fillText("Instructions:", this.DIM_X/5, this.DIM_Y/7);
-	    ctx.fillText("[←] to move blocko left", this.DIM_X/5, this.DIM_Y*2/7);
-	    ctx.fillText("[→] to move blocko right", this.DIM_X/5, this.DIM_Y*3/7);
-	    ctx.fillText("[↑] to climb the ladder", this.DIM_X/5, this.DIM_Y*4/7);
-	    ctx.fillText("[space] to jump", this.DIM_X/5, this.DIM_Y*5/7);
-	    ctx.fillText("press enter to start", this.DIM_X/5, this.DIM_Y*6/7);
-	    ctx.closePath();
+	    if(!this.instructionsRendered) {
+	      ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
+	      ctx.fillStyle = "black";
+	      ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
+	      ctx.beginPath();
+	      ctx.font = "40px Inconsolata";
+	      ctx.fillStyle = "#0000FF";
+	      ctx.fillText("Instructions:", this.DIM_X/5, this.DIM_Y/7);
+	      ctx.fillText("[←] to move blocko left", this.DIM_X/5, this.DIM_Y*2/7);
+	      ctx.fillText("[→] to move blocko right", this.DIM_X/5, this.DIM_Y*3/7);
+	      ctx.fillText("[↑] to climb the ladder", this.DIM_X/5, this.DIM_Y*4/7);
+	      ctx.fillText("[space] to jump", this.DIM_X/5, this.DIM_Y*5/7);
+	      ctx.fillText("press enter to start", this.DIM_X/5, this.DIM_Y*6/7);
+	      ctx.closePath();
+	    }
 	  } else if (this.gameWon) {
 	    ctx.beginPath();
 	    ctx.font = "120px Inconsolata";

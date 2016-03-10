@@ -59,7 +59,7 @@ Game.prototype.draw = function(ctx) {
       ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
       ctx.beginPath();
       ctx.font = "bold 35px Inconsolata";
-      ctx.fillStyle = "#yellow";
+      ctx.fillStyle = "yellow";
       ctx.fillText("GET BLOCKO HOME!!!", this.DIM_X/5, this.DIM_Y/10);
       ctx.fillText("be sure to avoid the balls!!!", this.DIM_X/5, this.DIM_Y*2/10);
       ctx.fillText("don't hit the walls!!!", this.DIM_X/5, this.DIM_Y*3/10);

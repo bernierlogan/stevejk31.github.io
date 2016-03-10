@@ -10,6 +10,7 @@ var Game = function (DIM_X, DIM_Y, ctx) {
   this.DIM_Y = DIM_Y;
   this.gameOver = false;
   this.gameWon = false;
+  this.gameStart = true;
   this.barrels = [];
   this.addBarrel();
   this.player = new Player({
@@ -27,6 +28,10 @@ Game.prototype.start = function (ctx) {
   });
   document.addEventListener("keyup", function(e) {
     delete keystate[e.keyCode];
+  });
+  var can = document.getElementById("canvas");
+  can.addEventListener("click", function(e){
+    this.gameStart = false;
   });
   var idx = 0;
   var animateCallback = function(){
@@ -50,7 +55,13 @@ Game.prototype.addBarrel = function(ctx) {
 };
 
 Game.prototype.draw = function(ctx) {
-  if (this.gameWon) {
+  if (this.gameStart) {
+    ctx.beginPath();
+    ctx.font = "120px Inconsolata";
+    ctx.fillStyle = "#0000FF";
+    ctx.fillText("Instructions: \n[←] to move blocko left \n[→] to move blocko right \n[↑] to climb the ladder \n[space] to jump", this.DIM_X/5, this.DIM_Y/2);
+    ctx.closePath();
+  } else if (this.gameWon) {
     ctx.beginPath();
     ctx.font = "120px Inconsolata";
     ctx.fillStyle = "#0000FF";

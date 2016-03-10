@@ -212,8 +212,8 @@ Game.prototype.checkCollisions = function () {
     this.player.pos[1] < 5 || this.player.pos[1] > this.DIM_Y - 5 ) {
     this.gameOver = true;
   }
-  if (this.player.pos[0] > 5 && this.player.pos[0] < 80 &&
-    this.player.pos[1] > 5 && this.player.pos[1] < 80 ) {
+  if (this.player.pos[0] > 5 && this.player.pos[0] < 90 &&
+    this.player.pos[1] > 5 && this.player.pos[1] < 90 ) {
     this.gameWon = true;
   }
 };

@@ -55,17 +55,20 @@ Game.prototype.draw = function(ctx) {
   if (this.gameStart) {
     if(!this.instructionsRendered) {
       ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
-      ctx.fillStyle = "black";
+      ctx.fillStyle = "yellow";
       ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
       ctx.beginPath();
-      ctx.font = "40px Inconsolata";
+      ctx.font = "30px Inconsolata";
       ctx.fillStyle = "#0000FF";
-      ctx.fillText("Instructions:", this.DIM_X/5, this.DIM_Y/7);
-      ctx.fillText("[←] to move blocko left", this.DIM_X/5, this.DIM_Y*2/7);
-      ctx.fillText("[→] to move blocko right", this.DIM_X/5, this.DIM_Y*3/7);
-      ctx.fillText("[↑] to climb the ladder", this.DIM_X/5, this.DIM_Y*4/7);
-      ctx.fillText("[space] to jump", this.DIM_X/5, this.DIM_Y*5/7);
-      ctx.fillText("press enter to start", this.DIM_X/5, this.DIM_Y*6/7);
+      ctx.fillText("GET BLOCKO HOME!!!", this.DIM_X/5, this.DIM_Y/10);
+      ctx.fillText("be sure to avoid the balls!!!", this.DIM_X/5, this.DIM_Y*2/10);
+      ctx.fillText("don't hit the walls!!!", this.DIM_X/5, this.DIM_Y*3/10);
+      ctx.fillText("Instructions:", this.DIM_X/5, this.DIM_Y*4/10);
+      ctx.fillText("[←] to move blocko left", this.DIM_X/5, this.DIM_Y*5/10);
+      ctx.fillText("[→] to move blocko right", this.DIM_X/5, this.DIM_Y*6/10);
+      ctx.fillText("[↑] to climb the ladder", this.DIM_X/5, this.DIM_Y*7/10);
+      ctx.fillText("[space] to jump", this.DIM_X/5, this.DIM_Y*8/10);
+      ctx.fillText("press enter to start", this.DIM_X/5, this.DIM_Y*9/10);
       ctx.closePath();
     }
   } else if (this.gameWon) {

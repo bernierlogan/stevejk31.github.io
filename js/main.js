@@ -1,6 +1,6 @@
 var Game = require('./game.js');
-var WIDTH  = 900;
-var HEIGHT = 900;
+var WIDTH  = 700;
+var HEIGHT = 700;
 
 
 function main() {

@@ -160,23 +160,23 @@ Game.prototype.draw = function(ctx) {
     beam6.draw(ctx);
 
     var ladder1 = new Ladder({
-      pos: [655, 130],
+      pos: [this.DIM_X * 0.7278, this.DIM_Y * 0.1444],
       game: this
     });
     var ladder2 = new Ladder({
-      pos: [230, 265],
+      pos: [this.DIM_X * 0.255, this.DIM_Y * 0.2944],
       game: this
     });
     var ladder3 = new Ladder({
-      pos: [655, 400],
+      pos: [this.DIM_X * 0.7278, this.DIM_Y * 0.4444],
       game: this
     });
     var ladder4 = new Ladder({
-      pos: [230, 535],
+      pos: [this.DIM_X * 0.255, this.DIM_Y * 0.5944],
       game: this
     });
     var ladder5 = new Ladder({
-      pos: [655, 670],
+      pos: [this.DIM_X * 0.7278, this.DIM_Y * 0.7444],
       game: this
     });
 

@@ -6,10 +6,10 @@ function Barrel(posArg) {
   this.pos = posArg["pos"];
   this.game = posArg["game"];
   this.color = "#FFA500";
-  this.radius = 10;
   this.DIM_X = posArg["DIM_X"];
   this.DIM_Y = posArg["DIM_Y"];
-  this.pos = [45, 70];
+  this.radius = this.DIM_X /90;
+  this.pos = [this.DIM_X/20, this.DIM_Y * 7/90];
   this.vel = [this.DIM_X * 0.00225, this.DIM_Y * 0.000147];
 }
 

@@ -357,7 +357,7 @@
 	  } else if (Math.floor(pos[1]) > this.DIM_Y * 0.537 && Math.floor(pos[1]) < this.DIM_Y * 0.578 ) {
 	    vel = [-this.DIM_X * 0.00225, this.DIM_Y * 0.000147];
 	    // level 2
-	  } else if (Math.floor(pos[1]) > this.DIM_Y * 0.688 && Math.floor(pos[1]) < this.DIM_Y * 0.7266 ) {
+	  } else if (Math.floor(pos[1]) > this.DIM_Y * 0.686 && Math.floor(pos[1]) < this.DIM_Y * 0.7266 ) {
 	    vel = [this.DIM_X * 0.00225, this.DIM_Y * 0.000147];
 	    // level bottom
 	  } else if (Math.floor(pos[1]) > 745 && Math.floor(pos[1]) < 786 ) {

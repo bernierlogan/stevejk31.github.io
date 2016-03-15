@@ -360,7 +360,7 @@
 	  } else if (Math.floor(pos[1]) > this.DIM_Y * 0.686 && Math.floor(pos[1]) < this.DIM_Y * 0.7266 ) {
 	    vel = [this.DIM_X * 0.00225, this.DIM_Y * 0.000147];
 	    // level bottom
-	  } else if (Math.floor(pos[1]) > this.DIM_Y * 0.831 && Math.floor(pos[1]) < this.DIM_Y * 0.8733 ) {
+	  } else if (Math.floor(pos[1]) > this.DIM_Y * 0.829 && Math.floor(pos[1]) < this.DIM_Y * 0.8733 ) {
 	    vel = [-this.DIM_X * 0.00225, this.DIM_Y * 0.000147];
 	    //fall right
 	  } else if (Math.floor(pos[0]) >= this.DIM_X * 0.8033 && Math.floor(pos[0]) <= this.DIM_Y * 0.8222 ){

@@ -357,10 +357,10 @@
 	  } else if (Math.floor(pos[1]) > this.DIM_Y * 0.537 && Math.floor(pos[1]) < this.DIM_Y * 0.578 ) {
 	    vel = [-this.DIM_X * 0.00225, this.DIM_Y * 0.000147];
 	    // level 2
-	  } else if (Math.floor(pos[1]) > this.DIM_Y * 0.683 && Math.floor(pos[1]) < this.DIM_Y * 0.7266 ) {
+	  } else if (Math.floor(pos[1]) > this.DIM_Y * 0.685 && Math.floor(pos[1]) < this.DIM_Y * 0.7266 ) {
 	    vel = [this.DIM_X * 0.00225, this.DIM_Y * 0.000147];
 	    // level bottom
-	  } else if (Math.floor(pos[1]) > 745 && Math.floor(pos[1]) < 786 ) {
+	  } else if (Math.floor(pos[1]) > this.DIM_Y * 0.828 && Math.floor(pos[1]) < this.DIM_Y * 0.8733 ) {
 	    vel = [-this.DIM_X * 0.00225, this.DIM_Y * 0.000147];
 	    //fall right
 	  } else if (Math.floor(pos[0]) >= this.DIM_X * 0.8033 && Math.floor(pos[0]) <= this.DIM_Y * 0.8222 ){

@@ -80,7 +80,7 @@
 	  this.barrels = [];
 	  this.addBarrel();
 	  this.player = new Player({
-	      pos: [this.DIM_X * 0.021, this.DIM_Y * 0.89],
+	      pos: [this.DIM_X * 0.025, this.DIM_Y * 0.89],
 	      DIM_X: this.DIM_X,
 	      DIM_y: this.DIM_Y,
 	      game:this
@@ -363,7 +363,7 @@
 	  } else if (yPos > this.DIM_Y * 0.686 && yPos < this.DIM_Y * 0.7266 ) {
 	    vel = [this.DIM_X * 0.00225, this.DIM_Y * 0.000147];
 	    // level bottom
-	  } else if (yPos > this.DIM_Y * 0.833 && yPos < this.DIM_Y * 0.870 ) {
+	  } else if (yPos > this.DIM_Y * 0.833 && yPos < this.DIM_Y * 0.868 ) {
 	    vel = [-this.DIM_X * 0.00225, this.DIM_Y * 0.00012];
 	    //fall right
 	  } else if (xPos >= this.DIM_X * 0.8033 && xPos <= this.DIM_Y * 0.8222 ){

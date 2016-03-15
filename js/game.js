@@ -13,7 +13,7 @@ var Game = function (DIM_X, DIM_Y, ctx) {
   this.barrels = [];
   this.addBarrel();
   this.player = new Player({
-      pos: [this.DIM_X * 0.021, this.DIM_Y * 0.89],
+      pos: [this.DIM_X * 0.025, this.DIM_Y * 0.89],
       DIM_X: this.DIM_X,
       DIM_y: this.DIM_Y,
       game:this

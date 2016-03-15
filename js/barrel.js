@@ -35,10 +35,10 @@ Barrel.prototype.move = function(pos, vel) {
   if (Math.floor(pos[0]) < this.DIM_X * 0.8056 && Math.floor(pos[1]) <= 115 ) {
     vel = [2.025, 0.1323];
     // level 5
-  } else if (Math.floor(pos[1]) > 210 && Math.floor(pos[1]) < 249 ) {
+  } else if (Math.floor(pos[1]) > 212 && Math.floor(pos[1]) < 249 ) {
     vel = [-2.025, 0.1323];
     // level 4
-  } else if (Math.floor(pos[1]) > 347 && Math.floor(pos[1]) < 384 ) {
+  } else if (Math.floor(pos[1]) > 350 && Math.floor(pos[1]) < 384 ) {
     vel = [2.025, 0.1323];
     // level 3
   } else if (Math.floor(pos[1]) > 478 && Math.floor(pos[1]) < 519 ) {

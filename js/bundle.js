@@ -356,16 +356,16 @@
 	  } else if (Math.floor(pos[1]) > 210 && Math.floor(pos[1]) < 249 ) {
 	    vel = [-2.025, 0.1323];
 	    // level 4
-	  } else if (Math.floor(pos[1]) > 339 && Math.floor(pos[1]) < 384 ) {
+	  } else if (Math.floor(pos[1]) > 347 && Math.floor(pos[1]) < 384 ) {
 	    vel = [2.025, 0.1323];
 	    // level 3
-	  } else if (Math.floor(pos[1]) > 476 && Math.floor(pos[1]) < 519 ) {
+	  } else if (Math.floor(pos[1]) > 478 && Math.floor(pos[1]) < 519 ) {
 	    vel = [-2.025, 0.1323];
 	    // level 2
-	  } else if (Math.floor(pos[1]) > 611 && Math.floor(pos[1]) < 654 ) {
+	  } else if (Math.floor(pos[1]) > 613 && Math.floor(pos[1]) < 654 ) {
 	    vel = [2.025, 0.1323];
 	    // level bottom
-	  } else if (Math.floor(pos[1]) > 743 && Math.floor(pos[1]) < 786 ) {
+	  } else if (Math.floor(pos[1]) > 745 && Math.floor(pos[1]) < 786 ) {
 	    vel = [-2.025, 0.1323];
 	    //fall right
 	  } else if (Math.floor(pos[0]) >= this.DIM_X * 0.8033 && Math.floor(pos[0]) <= this.DIM_Y * 0.8222 ){

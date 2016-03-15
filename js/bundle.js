@@ -80,7 +80,7 @@
 	  this.barrels = [];
 	  this.addBarrel();
 	  this.player = new Player({
-	      pos: [this.DIM_X * 0.02, this.DIM_Y * 0.89],
+	      pos: [this.DIM_X * 0.021, this.DIM_Y * 0.89],
 	      DIM_X: this.DIM_X,
 	      DIM_y: this.DIM_Y,
 	      game:this
@@ -532,8 +532,8 @@
 	  this.pos = options["pos"];
 	  this.color = "#79CDCD";
 	  this.game = options["game"];
-	  this.DIM_X = posArg["DIM_X"];
-	  this.DIM_Y = posArg["DIM_Y"];
+	  this.DIM_X = options["DIM_X"];
+	  this.DIM_Y = options["DIM_Y"];
 	  this.vel = [0,0];
 	  this.jumping = false;
 	  this.timeJumping = 0;

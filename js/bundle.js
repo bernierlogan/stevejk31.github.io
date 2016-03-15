@@ -348,7 +348,7 @@
 	  if (Math.floor(pos[0]) < this.DIM_X * 0.8056 && Math.floor(pos[1]) <= this.DIM_Y * 0.1278 ) {
 	    vel = [2.025, 0.1323];
 	    // level 5
-	  } else if (Math.floor(pos[1]) > this.DIM_Y * 0.2354 && Math.floor(pos[1]) < this.DIM_Y * 0.277 ) {
+	  } else if (Math.floor(pos[1]) > this.DIM_Y * 0.2354 && Math.floor(pos[1]) < this.DIM_Y * 0.27 ) {
 	    vel = [-2.025, 0.1323];
 	    // level 4
 	  } else if (Math.floor(pos[1]) > 349 && Math.floor(pos[1]) < 384 ) {

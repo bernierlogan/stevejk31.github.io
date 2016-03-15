@@ -113,7 +113,7 @@
 	};
 	
 	Game.prototype.addBarrel = function(ctx) {
-	   this.barrels.push(new Barrel({game: this, speed: 1, DIM_X: this.DIM_X, DIM_Y: this.DIM_Y}));
+	   this.barrels.push(new Barrel({game: this, DIM_X: this.DIM_X, DIM_Y: this.DIM_Y}));
 	};
 	// if (this.gameStart) {
 	//   if(!this.instructionsRendered) {
@@ -320,11 +320,10 @@
 	  this.game = posArg["game"];
 	  this.color = "#FFA500";
 	  this.radius = 10;
-	  this.pos = [45, 70];
-	  this.vel = [2.025, 0.1323];
-	  this.speed = posArg["speed"];
 	  this.DIM_X = posArg["DIM_X"];
 	  this.DIM_Y = posArg["DIM_Y"];
+	  this.pos = [45, 70];
+	  this.vel = [this.DIM_X * 0.00225, this.DIM_Y * 0.000147];
 	}
 	
 	Barrel.prototype.draw = function (ctx) {

@@ -46,7 +46,7 @@ Game.prototype.start = function (ctx) {
 };
 
 Game.prototype.addBarrel = function(ctx) {
-   this.barrels.push(new Barrel({game: this, speed: 1, DIM_X: this.DIM_X, DIM_Y: this.DIM_Y}));
+   this.barrels.push(new Barrel({game: this, DIM_X: this.DIM_X, DIM_Y: this.DIM_Y}));
 };
 // if (this.gameStart) {
 //   if(!this.instructionsRendered) {

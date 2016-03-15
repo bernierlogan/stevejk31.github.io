@@ -161,23 +161,33 @@ Game.prototype.draw = function(ctx) {
 
     var ladder1 = new Ladder({
       pos: [this.DIM_X * 0.7278, this.DIM_Y * 0.1444],
-      game: this
+      game: this,
+      DIM_X: this.DIM_X,
+      DIM_Y: this.DIM_Y
     });
     var ladder2 = new Ladder({
       pos: [this.DIM_X * 0.255, this.DIM_Y * 0.2944],
-      game: this
+      game: this,
+      DIM_X: this.DIM_X,
+      DIM_Y: this.DIM_Y
     });
     var ladder3 = new Ladder({
       pos: [this.DIM_X * 0.7278, this.DIM_Y * 0.4444],
-      game: this
+      game: this,
+      DIM_X: this.DIM_X,
+      DIM_Y: this.DIM_Y
     });
     var ladder4 = new Ladder({
       pos: [this.DIM_X * 0.255, this.DIM_Y * 0.5944],
-      game: this
+      game: this,
+      DIM_X: this.DIM_X,
+      DIM_Y: this.DIM_Y
     });
     var ladder5 = new Ladder({
       pos: [this.DIM_X * 0.7278, this.DIM_Y * 0.7444],
-      game: this
+      game: this,
+      DIM_X: this.DIM_X,
+      DIM_Y: this.DIM_Y
     });
 
     ladder1.draw(ctx);

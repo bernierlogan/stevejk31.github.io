@@ -228,23 +228,33 @@
 	
 	    var ladder1 = new Ladder({
 	      pos: [this.DIM_X * 0.7278, this.DIM_Y * 0.1444],
-	      game: this
+	      game: this,
+	      DIM_X: this.DIM_X,
+	      DIM_Y: this.DIM_Y
 	    });
 	    var ladder2 = new Ladder({
 	      pos: [this.DIM_X * 0.255, this.DIM_Y * 0.2944],
-	      game: this
+	      game: this,
+	      DIM_X: this.DIM_X,
+	      DIM_Y: this.DIM_Y
 	    });
 	    var ladder3 = new Ladder({
 	      pos: [this.DIM_X * 0.7278, this.DIM_Y * 0.4444],
-	      game: this
+	      game: this,
+	      DIM_X: this.DIM_X,
+	      DIM_Y: this.DIM_Y
 	    });
 	    var ladder4 = new Ladder({
 	      pos: [this.DIM_X * 0.255, this.DIM_Y * 0.5944],
-	      game: this
+	      game: this,
+	      DIM_X: this.DIM_X,
+	      DIM_Y: this.DIM_Y
 	    });
 	    var ladder5 = new Ladder({
 	      pos: [this.DIM_X * 0.7278, this.DIM_Y * 0.7444],
-	      game: this
+	      game: this,
+	      DIM_X: this.DIM_X,
+	      DIM_Y: this.DIM_Y
 	    });
 	
 	    ladder1.draw(ctx);
@@ -509,14 +519,16 @@
 	  this.pos = options["pos"];
 	  this.color = "#FFF";
 	  this.game = options["game"];
+	  this.DIM_X = options["DIM_X"];
+	  this.DIM_Y = options["DIM_Y"];
 	};
 	
 	Ladder.prototype.draw = function (ctx) {
 	  ctx.beginPath();
 	  ctx.strokeStyle = this.color;
 	  ctx.moveTo(this.pos[0],this.pos[1]);
-	  ctx.lineTo(this.pos[0],this.pos[1]+80);
-	  ctx.lineWidth = 20;
+	  ctx.lineTo(this.pos[0],this.pos[1]+ this.DIM_X *8/90);
+	  ctx.lineWidth = this.DIM_X/45;
 	  ctx.stroke();
 	  ctx.closePath();
 	};

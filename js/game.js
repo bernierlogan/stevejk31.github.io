@@ -48,7 +48,7 @@ Game.prototype.start = function (ctx) {
 };
 
 Game.prototype.addBarrel = function(ctx) {
-   this.barrels.push(new Barrel({game: this, speed: 1}));
+   this.barrels.push(new Barrel({game: this, speed: 1, DIM_X: this.DIM_X, DIM_Y: this.DIM_Y}));
 };
 
 Game.prototype.draw = function(ctx) {
@@ -94,13 +94,13 @@ Game.prototype.draw = function(ctx) {
     //home
     ctx.beginPath();
     ctx.fillStyle = "#993300";
-    ctx.fillRect(30,40,50,50);
+    ctx.fillRect(this.DIM_X/30,this.DIM_Y/22.5,this.DIM_X/18,this.DIM_Y/18);
     ctx.closePath();
     ctx.beginPath();
     ctx.fillStyle = "#993300";
-    ctx.moveTo(25, 40);
-    ctx.lineTo(85, 40);
-    ctx.lineTo(55, 10);
+    ctx.moveTo(this.DIM_X/36, this.DIM_Y/22.5);
+    ctx.lineTo(this.DIM_X/10.59, this.DIM_Y/22.5);
+    ctx.lineTo(this.DIM_X/16.36, this.DIM_Y/90);
     ctx.fill();
     // grid
     for (var i = 0; i < 9; i++) {

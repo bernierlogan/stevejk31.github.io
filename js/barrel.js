@@ -10,7 +10,8 @@ function Barrel(posArg) {
   this.pos = [45, 70];
   this.vel = [2.025, 0.1323];
   this.speed = posArg["speed"];
-  //TODO change this so it just falls
+  this.DIM_X = posArg["DIM_X"];
+  this.DIM_Y = posArg["DIM_Y"];
 }
 
 Barrel.prototype.draw = function (ctx) {

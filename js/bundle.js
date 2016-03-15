@@ -115,7 +115,7 @@
 	};
 	
 	Game.prototype.addBarrel = function(ctx) {
-	   this.barrels.push(new Barrel({game: this, speed: 1}));
+	   this.barrels.push(new Barrel({game: this, speed: 1, DIM_X: this.DIM_X, DIM_Y: this.DIM_Y}));
 	};
 	
 	Game.prototype.draw = function(ctx) {
@@ -161,13 +161,13 @@
 	    //home
 	    ctx.beginPath();
 	    ctx.fillStyle = "#993300";
-	    ctx.fillRect(30,40,50,50);
+	    ctx.fillRect(this.DIM_X/30,this.DIM_Y/22.5,this.DIM_X/18,this.DIM_Y/18);
 	    ctx.closePath();
 	    ctx.beginPath();
 	    ctx.fillStyle = "#993300";
-	    ctx.moveTo(25, 40);
-	    ctx.lineTo(85, 40);
-	    ctx.lineTo(55, 10);
+	    ctx.moveTo(this.DIM_X/36, this.DIM_Y/22.5);
+	    ctx.lineTo(this.DIM_X/10.59, this.DIM_Y/22.5);
+	    ctx.lineTo(this.DIM_X/16.36, this.DIM_Y/90);
 	    ctx.fill();
 	    // grid
 	    for (var i = 0; i < 9; i++) {
@@ -227,23 +227,23 @@
 	    beam6.draw(ctx);
 	
 	    var ladder1 = new Ladder({
-	      pos: [655, 130],
+	      pos: [this.DIM_X * 0.7278, this.DIM_Y * 0.1444],
 	      game: this
 	    });
 	    var ladder2 = new Ladder({
-	      pos: [230, 265],
+	      pos: [this.DIM_X * 0.255, this.DIM_Y * 0.2944],
 	      game: this
 	    });
 	    var ladder3 = new Ladder({
-	      pos: [655, 400],
+	      pos: [this.DIM_X * 0.7278, this.DIM_Y * 0.4444],
 	      game: this
 	    });
 	    var ladder4 = new Ladder({
-	      pos: [230, 535],
+	      pos: [this.DIM_X * 0.255, this.DIM_Y * 0.5944],
 	      game: this
 	    });
 	    var ladder5 = new Ladder({
-	      pos: [655, 670],
+	      pos: [this.DIM_X * 0.7278, this.DIM_Y * 0.7444],
 	      game: this
 	    });
 	
@@ -328,7 +328,8 @@
 	  this.pos = [45, 70];
 	  this.vel = [2.025, 0.1323];
 	  this.speed = posArg["speed"];
-	  //TODO change this so it just falls
+	  this.DIM_X = posArg["DIM_X"];
+	  this.DIM_Y = posArg["DIM_Y"];
 	}
 	
 	Barrel.prototype.draw = function (ctx) {

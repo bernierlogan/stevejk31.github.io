@@ -38,7 +38,7 @@ Barrel.prototype.move = function(pos, vel) {
   } else if (Math.floor(pos[1]) > 210 && Math.floor(pos[1]) < 249 ) {
     vel = [-2.025, 0.1323];
     // level 4
-  } else if (Math.floor(pos[1]) > 341 && Math.floor(pos[1]) < 384 ) {
+  } else if (Math.floor(pos[1]) > 339 && Math.floor(pos[1]) < 384 ) {
     vel = [2.025, 0.1323];
     // level 3
   } else if (Math.floor(pos[1]) > 476 && Math.floor(pos[1]) < 519 ) {

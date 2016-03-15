@@ -10,8 +10,6 @@ var Game = function (DIM_X, DIM_Y, ctx) {
   this.DIM_Y = DIM_Y;
   this.gameOver = false;
   this.gameWon = false;
-  this.instructionsRendered = false;
-  this.gameStart = true;
   this.barrels = [];
   this.addBarrel();
   this.player = new Player({
@@ -202,9 +200,6 @@ Game.prototype.moveObjects = function(){
 };
 //
 Game.prototype.step = function(keystate){
-  if (keystate[13]) {
-    this.gameStart = false;
-  }
   this.moveObjects();
   this.player.move(keystate);
   this.checkCollisions();

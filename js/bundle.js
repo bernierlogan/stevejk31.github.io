@@ -77,8 +77,6 @@
 	  this.DIM_Y = DIM_Y;
 	  this.gameOver = false;
 	  this.gameWon = false;
-	  this.instructionsRendered = false;
-	  this.gameStart = true;
 	  this.barrels = [];
 	  this.addBarrel();
 	  this.player = new Player({
@@ -269,9 +267,6 @@
 	};
 	//
 	Game.prototype.step = function(keystate){
-	  if (keystate[13]) {
-	    this.gameStart = false;
-	  }
 	  this.moveObjects();
 	  this.player.move(keystate);
 	  this.checkCollisions();
@@ -353,7 +348,7 @@
 	  if (Math.floor(pos[0]) < this.DIM_X * 0.8056 && Math.floor(pos[1]) <= this.DIM_Y * 0.1278 ) {
 	    vel = [2.025, 0.1323];
 	    // level 5
-	  } else if (Math.floor(pos[1]) > 211 && Math.floor(pos[1]) < 250 ) {
+	  } else if (Math.floor(pos[1]) > this.DIM_Y * 0.2344 && Math.floor(pos[1]) < this.DIM_Y * 0.2778 ) {
 	    vel = [-2.025, 0.1323];
 	    // level 4
 	  } else if (Math.floor(pos[1]) > 349 && Math.floor(pos[1]) < 384 ) {

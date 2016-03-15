@@ -49,7 +49,7 @@ Barrel.prototype.move = function(pos, vel) {
     vel = [this.DIM_X * 0.00225, this.DIM_Y * 0.000147];
     // level bottom
   } else if (yPos > this.DIM_Y * 0.835 && yPos < this.DIM_Y * 0.874 ) {
-    vel = [-this.DIM_X * 0.00225, this.DIM_Y * 0.000135];
+    vel = [-this.DIM_X * 0.00225, this.DIM_Y * 0.00013];
     //fall right
   } else if (xPos >= this.DIM_X * 0.8033 && xPos <= this.DIM_Y * 0.8222 ){
     vel = [0,this.DIM_Y * 0.00222222222];

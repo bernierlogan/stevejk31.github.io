@@ -81,6 +81,8 @@
 	  this.addBarrel();
 	  this.player = new Player({
 	      pos: [this.DIM_X * 0.02, this.DIM_Y * 0.89],
+	      DIM_X: this.DIM_X,
+	      DIM_y: this.DIM_Y,
 	      game:this
 	    });
 	  this.start(ctx);
@@ -361,7 +363,7 @@
 	  } else if (yPos > this.DIM_Y * 0.686 && yPos < this.DIM_Y * 0.7266 ) {
 	    vel = [this.DIM_X * 0.00225, this.DIM_Y * 0.000147];
 	    // level bottom
-	  } else if (yPos > this.DIM_Y * 0.833 && yPos < this.DIM_Y * 0.872 ) {
+	  } else if (yPos > this.DIM_Y * 0.833 && yPos < this.DIM_Y * 0.870 ) {
 	    vel = [-this.DIM_X * 0.00225, this.DIM_Y * 0.00012];
 	    //fall right
 	  } else if (xPos >= this.DIM_X * 0.8033 && xPos <= this.DIM_Y * 0.8222 ){
@@ -530,6 +532,8 @@
 	  this.pos = options["pos"];
 	  this.color = "#79CDCD";
 	  this.game = options["game"];
+	  this.DIM_X = posArg["DIM_X"];
+	  this.DIM_Y = posArg["DIM_Y"];
 	  this.vel = [0,0];
 	  this.jumping = false;
 	  this.timeJumping = 0;

@@ -48,7 +48,7 @@ Barrel.prototype.move = function(pos, vel) {
   } else if (yPos > this.DIM_Y * 0.686 && yPos < this.DIM_Y * 0.7266 ) {
     vel = [this.DIM_X * 0.00225, this.DIM_Y * 0.000147];
     // level bottom
-  } else if (yPos > this.DIM_Y * 0.833 && yPos < this.DIM_Y * 0.872 ) {
+  } else if (yPos > this.DIM_Y * 0.833 && yPos < this.DIM_Y * 0.870 ) {
     vel = [-this.DIM_X * 0.00225, this.DIM_Y * 0.00012];
     //fall right
   } else if (xPos >= this.DIM_X * 0.8033 && xPos <= this.DIM_Y * 0.8222 ){

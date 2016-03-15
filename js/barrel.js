@@ -31,22 +31,30 @@ Barrel.prototype.draw = function (ctx) {
 };
 
 Barrel.prototype.move = function(pos, vel) {
-  if (Math.floor(pos[0]) < 725 && Math.floor(pos[1]) <= 115 ) {
-    this.vel = [2.025, 0.1323];
+  // level 6
+  if (Math.floor(pos[0]) < this.DIM_X * 0.8056 && Math.floor(pos[1]) <= 115 ) {
+    vel = [2.025, 0.1323];
+    // level 5
   } else if (Math.floor(pos[1]) > 208 && Math.floor(pos[1]) < 249 ) {
-    this.vel = [-2.025, 0.1323];
+    vel = [-2.025, 0.1323];
+    // level 4
   } else if (Math.floor(pos[1]) > 343 && Math.floor(pos[1]) < 384 ) {
-    this.vel = [2.025, 0.1323];
+    vel = [2.025, 0.1323];
+    // level 3
   } else if (Math.floor(pos[1]) > 478 && Math.floor(pos[1]) < 519 ) {
-    this.vel = [-2.025, 0.1323];
+    vel = [-2.025, 0.1323];
+    // level 2
   } else if (Math.floor(pos[1]) > 613 && Math.floor(pos[1]) < 654 ) {
-    this.vel = [2.025, 0.1323];
+    vel = [2.025, 0.1323];
+    // level 1
   } else if (Math.floor(pos[1]) > 745 && Math.floor(pos[1]) < 786 ) {
-    this.vel = [-2.025, 0.1323];
-  } else if (Math.floor(pos[0]) >= 723 && Math.floor(pos[0]) <= 740 ){
-    this.vel = [0,2];
-  } else if (Math.floor(pos[0]) >= 145 && Math.floor(pos[0]) <= 170 ){
-    this.vel = [0,2];
+    vel = [-2.025, 0.1323];
+    //fall right
+  } else if (Math.floor(pos[0]) >= this.DIM_X * 0.8033 && Math.floor(pos[0]) <= this.DIM_X * 0.8222 ){
+    vel = [0,2];
+    //fall left
+  } else if (Math.floor(pos[0]) >= this.DIM_X * 0.1611 && Math.floor(pos[0]) <= this.DIM_X * 0.1889 ){
+    vel = [0,2];
   }
   this.pos =[ pos[0]+vel[0],  pos[1]+vel[1]];
 };

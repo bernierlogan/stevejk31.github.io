@@ -357,7 +357,7 @@
 	  } else if (yPos > this.DIM_Y * 0.3876 && yPos < this.DIM_Y * 0.428 ) {
 	    vel = [this.DIM_X * 0.00225, this.DIM_Y * 0.000147];
 	    // level 3
-	  } else if (yPos > this.DIM_Y * 0.537 && yPos < this.DIM_Y * 0.578 ) {
+	  } else if (yPos > this.DIM_Y * 0.537 && yPos < this.DIM_Y * 0.580 ) {
 	    vel = [-this.DIM_X * 0.00225, this.DIM_Y * 0.000147];
 	    // level 2
 	  } else if (yPos > this.DIM_Y * 0.686 && yPos < this.DIM_Y * 0.7266 ) {

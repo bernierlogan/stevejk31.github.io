@@ -2,7 +2,6 @@ var Player = function(options) {
   this.pos = options["pos"];
   this.color = "#79CDCD";
   this.game = options["game"];
-  console.log(options["DIM_X"]);
   this.DIM_X = options["DIM_X"];
   this.DIM_Y = options["DIM_Y"];
   this.vel = [0,0];
@@ -101,37 +100,37 @@ var move = function (pos, keystate) {
       vel = [-xVel, -yVel];
     }
   // level 5
-} else if (yPos > 200 && yPos < 310 &&
-  (keystate[RightArrow] || keystate[LeftArrow])) {
-    if (keystate[RightArrow] ) {
-      vel = [xVel, -yVel];
-    } else if ( keystate[LeftArrow]) {
-      vel = [-xVel, yVel];
-    }
-  // level 4
-} else if (yPos > 320 && yPos < 450 &&
-  (keystate[RightArrow] || keystate[LeftArrow])) {
-    if (keystate[RightArrow] ) {
-      vel = [xVel, yVel];
-    } else if ( keystate[LeftArrow]) {
-      vel = [-xVel, -yVel];
-    }
-  // level 3
-} else if (yPos > 455 && yPos < 600 &&
-  (keystate[RightArrow] || keystate[LeftArrow])) {
-    if (keystate[RightArrow] ) {
-      vel = [xVel, -yVel];
-    } else if ( keystate[LeftArrow]) {
-      vel = [-xVel, yVel];
-    }
-  // level 2
-} else if (yPos > 600 && yPos < 720 &&
-  (keystate[RightArrow] || keystate[LeftArrow])) {
-    if (keystate[RightArrow] ) {
-      vel = [xVel, yVel];
-    } else if ( keystate[LeftArrow]) {
-      vel = [-xVel, -yVel];
-    }
+// } else if (yPos > 200 && yPos < 310 &&
+//   (keystate[RightArrow] || keystate[LeftArrow])) {
+//     if (keystate[RightArrow] ) {
+//       vel = [xVel, -yVel];
+//     } else if ( keystate[LeftArrow]) {
+//       vel = [-xVel, yVel];
+//     }
+//   // level 4
+// } else if (yPos > 320 && yPos < 450 &&
+//   (keystate[RightArrow] || keystate[LeftArrow])) {
+//     if (keystate[RightArrow] ) {
+//       vel = [xVel, yVel];
+//     } else if ( keystate[LeftArrow]) {
+//       vel = [-xVel, -yVel];
+//     }
+//   // level 3
+// } else if (yPos > 455 && yPos < 600 &&
+//   (keystate[RightArrow] || keystate[LeftArrow])) {
+//     if (keystate[RightArrow] ) {
+//       vel = [xVel, -yVel];
+//     } else if ( keystate[LeftArrow]) {
+//       vel = [-xVel, yVel];
+//     }
+//   // level 2
+// } else if (yPos > 600 && yPos < 720 &&
+//   (keystate[RightArrow] || keystate[LeftArrow])) {
+//     if (keystate[RightArrow] ) {
+//       vel = [xVel, yVel];
+//     } else if ( keystate[LeftArrow]) {
+//       vel = [-xVel, -yVel];
+//     }
   // level 1
 } else if (yPos > (this.DIM_Y * 0.7) && yPos < this.DIM_Y &&
   (keystate[RightArrow] || keystate[LeftArrow])) {

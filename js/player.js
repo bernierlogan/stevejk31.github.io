@@ -26,19 +26,23 @@ var climbingPos = function (pos, DIM_X, DIM_Y) {
     return true;
   }
   //level2
-  if (pos[0] > 210 && pos[0] < 240 && pos[1] > 600 && pos[1] < 650) {
+  if (pos[0] > DIM_X *  7/10 && pos[0] < DIM_X * 4/15 &&
+     pos[1] > DIM_Y * 2/3 && pos[1] < DIM_Y * 13/16) {
     return true;
   }
   //level3
-  if (pos[0] > 645 && pos[0] < 675 && pos[1] > 475 && pos[1] < 525) {
+  if (pos[0] > DIM_X *  149/180 && pos[0] < DIM_X *  135/180 &&
+     pos[1] > DIM_Y * 475/900 && pos[1] < DIM_Y * 525/900) {
     return true;
   }
   //level4
-  if (pos[0] > 210 && pos[0] < 240 && pos[1] > 360 && pos[1] < 395) {
+  if (pos[0] > DIM_X *  21/90 && pos[0] < DIM_X *  24/90 &&
+     pos[1] > DIM_Y * 36/90 && pos[1] < DIM_Y * 395/900) {
     return true;
   }
   //level5
-  if (pos[0] > 645 && pos[0] < 675 && pos[1] > 200 && pos[1] < 249) {
+  if (pos[0] > DIM_X *  645/900 && pos[0] < DIM_X *  675/900 &&
+     pos[1] > DIM_Y * 29 && pos[1] < DIM_Y * 249/900) {
     return true;
   }
   return false;

@@ -39,4 +39,6 @@ Barrel.prototype.move = function(pos, vel) {
 
 
 ### TODO
-* player movementfac
+* confirm player movement
+* falling
+* climbing multiple levels

@@ -542,6 +542,7 @@
 
 	var Player = function(options) {
 	  this.pos = options["pos"];
+	  console.log(this.pos);
 	  this.color = "#79CDCD";
 	  this.game = options["game"];
 	  this.DIM_X = options["DIM_X"];

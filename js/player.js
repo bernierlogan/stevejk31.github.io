@@ -87,6 +87,9 @@ var climbingPos = function (pos) {
 };
 
 var move = function (pos, keystate) {
+  if (keystate[space]) {
+    console.log(this.pos);
+  }
   var vel = [0,0];
   var xVel = this.DIM_X/444;
   var yVel = this.DIM_X/7826;
@@ -100,7 +103,7 @@ var move = function (pos, keystate) {
       vel = [-xVel, -yVel];
     }
   // level 5
-// } else if (yPos > 200 && yPos < 310 &&
+// } else if (yPos > (this.DIM_Y * 0.2111)200 && yPos < (this.DIM_Y * 0.2111)310 &&
 //   (keystate[RightArrow] || keystate[LeftArrow])) {
 //     if (keystate[RightArrow] ) {
 //       vel = [xVel, -yVel];
@@ -108,7 +111,7 @@ var move = function (pos, keystate) {
 //       vel = [-xVel, yVel];
 //     }
 //   // level 4
-// } else if (yPos > 320 && yPos < 450 &&
+// } else if (yPos > (this.DIM_Y * 0.2111)320 && yPos < (this.DIM_Y * 0.2111)450 &&
 //   (keystate[RightArrow] || keystate[LeftArrow])) {
 //     if (keystate[RightArrow] ) {
 //       vel = [xVel, yVel];
@@ -116,7 +119,7 @@ var move = function (pos, keystate) {
 //       vel = [-xVel, -yVel];
 //     }
 //   // level 3
-// } else if (yPos > 455 && yPos < 600 &&
+// } else if (yPos > (this.DIM_Y * 0.2111)455 && yPos < (this.DIM_Y * 0.2111)600 &&
 //   (keystate[RightArrow] || keystate[LeftArrow])) {
 //     if (keystate[RightArrow] ) {
 //       vel = [xVel, -yVel];
@@ -124,7 +127,7 @@ var move = function (pos, keystate) {
 //       vel = [-xVel, yVel];
 //     }
 //   // level 2
-// } else if (yPos > 600 && yPos < 720 &&
+// } else if (yPos > (this.DIM_Y * 0.2111)600 && yPos < (this.DIM_Y * 0.2111)720 &&
 //   (keystate[RightArrow] || keystate[LeftArrow])) {
 //     if (keystate[RightArrow] ) {
 //       vel = [xVel, yVel];

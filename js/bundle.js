@@ -675,7 +675,7 @@
 	      vel = [-xVel, -yVel];
 	    }
 	  // level 1
-	} else if (yPos > 720 && yPos < 900 &&
+	} else if (yPos > (this.DIM_Y * 0.8) && yPos < this.DIM_Y &&
 	  (keystate[RightArrow] || keystate[LeftArrow])) {
 	    if (keystate[RightArrow] ) {
 	      vel = [xVel, -yVel];

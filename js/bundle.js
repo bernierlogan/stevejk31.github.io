@@ -630,22 +630,24 @@
 	};
 	
 	var move = function (pos, keystate, DIM_X, DIM_Y) {
-	  if (keystate[space]) {
-	    console.log(pos);
-	  }
 	  var vel = [0,0];
 	  var xVel = DIM_X/444;
 	  var yVel = DIM_X/7826;
 	  var yPos = Math.floor(pos[1]);
-	  // level 6
-	  if (yPos < (DIM_Y * 0.2111) && yPos > 0 &&
-	  (keystate[RightArrow] || keystate[LeftArrow])) {
-	    if (keystate[RightArrow] ) {
-	      vel = [xVel, yVel];
-	    } else if ( keystate[LeftArrow]) {
-	      vel = [-xVel, -yVel];
-	    }
-	  // level 5
+	  if (keystate[space]) {
+	    console.log(pos);
+	    console.log(xVel);
+	    console.log(yVel);
+	  }
+	  // // level 6
+	  // if (yPos < (DIM_Y * 0.2111) && yPos > 0 &&
+	  // (keystate[RightArrow] || keystate[LeftArrow])) {
+	  //   if (keystate[RightArrow] ) {
+	  //     vel = [xVel, yVel];
+	  //   } else if ( keystate[LeftArrow]) {
+	  //     vel = [-xVel, -yVel];
+	  //   }
+	  // // level 5
 	// } else if (yPos > (DIM_Y * 0.2111)200 && yPos < (DIM_Y * 0.2111)310 &&
 	//   (keystate[RightArrow] || keystate[LeftArrow])) {
 	//     if (keystate[RightArrow] ) {
@@ -678,6 +680,7 @@
 	//       vel = [-xVel, -yVel];
 	//     }
 	  // level 1
+	  if(false){
 	} else if (yPos > (DIM_Y * 0.7) && yPos < DIM_Y &&
 	  (keystate[RightArrow] || keystate[LeftArrow])) {
 	    if (keystate[RightArrow] ) {

@@ -89,7 +89,7 @@ var climbingPos = function (pos) {
 
 var move = function (pos, keystate) {
   if (keystate[space]) {
-    console.log(this.pos);
+    console.log(pos);
   }
   var vel = [0,0];
   var xVel = this.DIM_X/444;

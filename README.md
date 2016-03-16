@@ -39,4 +39,4 @@ Barrel.prototype.move = function(pos, vel) {
 
 
 ### TODO
-* player movement
+* player movementfac

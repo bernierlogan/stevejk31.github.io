@@ -559,7 +559,7 @@
 	  //body
 	  ctx.beginPath();
 	  ctx.strokeStyle = this.color;
-	  ctx.lineWidth = this.DIM_X/175;
+	  ctx.lineWidth = this.DIM_X/90;
 	  ctx.moveTo(this.pos[0],this.pos[1] - (this.DIM_Y/36));
 	  ctx.lineTo(this.pos[0],this.pos[1] - (this.DIM_Y/18));
 	  ctx.stroke();

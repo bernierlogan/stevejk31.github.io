@@ -544,8 +544,8 @@
 	  this.pos = options["pos"];
 	  this.color = "#79CDCD";
 	  this.game = options["game"];
-	  this.DIM_X = options["DIM_X"];
-	  this.DIM_Y = options["DIM_Y"];
+	  this.DIM_X = 700;
+	  this.DIM_Y = 700;
 	  this.vel = [0,0];
 	  this.jumping = false;
 	  this.timeJumping = 0;

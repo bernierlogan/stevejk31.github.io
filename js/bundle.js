@@ -556,60 +556,11 @@
 	  this.timeFalling = 0;
 	};
 	
-	Player.prototype.draw = function (ctx) {
-	  //body
-	  ctx.beginPath();
-	  ctx.strokeStyle = this.color;
-	  ctx.lineWidth = this.DIM_X/90;
-	  ctx.moveTo(this.pos[0],this.pos[1] - (this.DIM_Y/36));
-	  ctx.lineTo(this.pos[0],this.pos[1] - (this.DIM_Y/18));
-	  ctx.stroke();
-	  ctx.closePath();
-	  // //arms
-	  ctx.beginPath();
-	  ctx.strokeStyle = this.color;
-	  ctx.lineWidth = this.DIM_X/150;
-	  ctx.moveTo(this.pos[0] + (this.DIM_X/60),this.pos[1] - (this.DIM_Y/25.7));
-	  ctx.lineTo(this.pos[0] + (this.DIM_X/81),this.pos[1] - (this.DIM_Y/18));
-	  ctx.stroke();
-	  ctx.closePath();
-	  ctx.beginPath();
-	  ctx.strokeStyle = this.color;
-	  ctx.lineWidth = this.DIM_X/150;
-	  ctx.moveTo(this.pos[0] - (this.DIM_X/64),this.pos[1] - (this.DIM_Y/25.7));
-	  ctx.lineTo(this.pos[0] - (this.DIM_X/90),this.pos[1] - (this.DIM_Y/18));
-	  ctx.stroke();
-	  ctx.closePath();
-	  // legs
-	  ctx.beginPath();
-	  ctx.strokeStyle = this.color;
-	  ctx.lineWidth = this.DIM_X/150;
-	  ctx.moveTo(this.pos[0] + (this.DIM_X/129), this.pos[1] + (this.DIM_Y/450));
-	  ctx.lineTo(this.pos[0] + (this.DIM_X/300), this.pos[1] - (this.DIM_Y/41));
-	  ctx.stroke();
-	  ctx.closePath();
-	  ctx.beginPath();
-	  ctx.strokeStyle = this.color;
-	  ctx.lineWidth = this.DIM_X/150;
-	  ctx.moveTo(this.pos[0] -(this.DIM_X/129),this.pos[1] + (this.DIM_Y/450));
-	  ctx.lineTo(this.pos[0] -(this.DIM_X/300),this.pos[1] - (this.DIM_Y/40.9));
-	  ctx.stroke();
-	  ctx.closePath();
-	  // // head
-	  ctx.beginPath();
-	  ctx.strokeStyle = this.color;
-	  ctx.lineWidth = this.DIM_X/90;
-	  ctx.moveTo(this.pos[0],this.pos[1] - (this.DIM_Y/16.36) );
-	  ctx.lineTo(this.pos[0],this.pos[1] - (this.DIM_Y/13.846) );
-	  ctx.stroke();
-	  ctx.closePath();
-	};
-	
 	var UpArrow = 38;
 	var DownArrow = 40;
 	var LeftArrow = 37;
 	var RightArrow = 39;
-	var space = 32;90
+	var space = 32;
 	var climbingPos = function (pos, DIM_X, DIM_Y) {
 	  //level 1
 	  if (pos[0] > DIM_X * 129/180 && pos[0] < DIM_X * 27/36  &&
@@ -810,6 +761,54 @@
 	  }
 	};
 	
+	Player.prototype.draw = function (ctx) {
+	  //body
+	  ctx.beginPath();
+	  ctx.strokeStyle = this.color;
+	  ctx.lineWidth = this.DIM_X/90;
+	  ctx.moveTo(this.pos[0],this.pos[1] - (this.DIM_Y/36));
+	  ctx.lineTo(this.pos[0],this.pos[1] - (this.DIM_Y/18));
+	  ctx.stroke();
+	  ctx.closePath();
+	  // //arms
+	  ctx.beginPath();
+	  ctx.strokeStyle = this.color;
+	  ctx.lineWidth = this.DIM_X/150;
+	  ctx.moveTo(this.pos[0] + (this.DIM_X/60),this.pos[1] - (this.DIM_Y/25.7));
+	  ctx.lineTo(this.pos[0] + (this.DIM_X/81),this.pos[1] - (this.DIM_Y/18));
+	  ctx.stroke();
+	  ctx.closePath();
+	  ctx.beginPath();
+	  ctx.strokeStyle = this.color;
+	  ctx.lineWidth = this.DIM_X/150;
+	  ctx.moveTo(this.pos[0] - (this.DIM_X/64),this.pos[1] - (this.DIM_Y/25.7));
+	  ctx.lineTo(this.pos[0] - (this.DIM_X/90),this.pos[1] - (this.DIM_Y/18));
+	  ctx.stroke();
+	  ctx.closePath();
+	  // legs
+	  ctx.beginPath();
+	  ctx.strokeStyle = this.color;
+	  ctx.lineWidth = this.DIM_X/150;
+	  ctx.moveTo(this.pos[0] + (this.DIM_X/129), this.pos[1] + (this.DIM_Y/450));
+	  ctx.lineTo(this.pos[0] + (this.DIM_X/300), this.pos[1] - (this.DIM_Y/41));
+	  ctx.stroke();
+	  ctx.closePath();
+	  ctx.beginPath();
+	  ctx.strokeStyle = this.color;
+	  ctx.lineWidth = this.DIM_X/150;
+	  ctx.moveTo(this.pos[0] -(this.DIM_X/129),this.pos[1] + (this.DIM_Y/450));
+	  ctx.lineTo(this.pos[0] -(this.DIM_X/300),this.pos[1] - (this.DIM_Y/40.9));
+	  ctx.stroke();
+	  ctx.closePath();
+	  // // head
+	  ctx.beginPath();
+	  ctx.strokeStyle = this.color;
+	  ctx.lineWidth = this.DIM_X/90;
+	  ctx.moveTo(this.pos[0],this.pos[1] - (this.DIM_Y/16.36) );
+	  ctx.lineTo(this.pos[0],this.pos[1] - (this.DIM_Y/13.846) );
+	  ctx.stroke();
+	  ctx.closePath();
+	};
 	module.exports = Player;
 
 

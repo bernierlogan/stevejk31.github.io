@@ -15,7 +15,7 @@ var Game = function (DIM_X, DIM_Y, ctx) {
   this.player = new Player({
       pos: [this.DIM_X * 0.025, this.DIM_Y * 0.89],
       DIM_X: this.DIM_X,
-      DIM_y: this.DIM_Y,
+      DIM_Y: this.DIM_Y,
       game:this
     });
   this.start(ctx);

@@ -629,16 +629,16 @@
 	  return false;
 	};
 	
-	var move = function (pos, keystate) {
+	var move = function (pos, keystate, DIM_X, DIM_Y) {
 	  if (keystate[space]) {
 	    console.log(pos);
 	  }
 	  var vel = [0,0];
-	  var xVel = this.DIM_X/444;
-	  var yVel = this.DIM_X/7826;
+	  var xVel = DIM_X/444;
+	  var yVel = DIM_X/7826;
 	  var yPos = Math.floor(pos[1]);
 	  // level 6
-	  if (yPos < (this.DIM_Y * 0.2111) && yPos > 0 &&
+	  if (yPos < (DIM_Y * 0.2111) && yPos > 0 &&
 	  (keystate[RightArrow] || keystate[LeftArrow])) {
 	    if (keystate[RightArrow] ) {
 	      vel = [xVel, yVel];
@@ -646,7 +646,7 @@
 	      vel = [-xVel, -yVel];
 	    }
 	  // level 5
-	// } else if (yPos > (this.DIM_Y * 0.2111)200 && yPos < (this.DIM_Y * 0.2111)310 &&
+	// } else if (yPos > (DIM_Y * 0.2111)200 && yPos < (DIM_Y * 0.2111)310 &&
 	//   (keystate[RightArrow] || keystate[LeftArrow])) {
 	//     if (keystate[RightArrow] ) {
 	//       vel = [xVel, -yVel];
@@ -654,7 +654,7 @@
 	//       vel = [-xVel, yVel];
 	//     }
 	//   // level 4
-	// } else if (yPos > (this.DIM_Y * 0.2111)320 && yPos < (this.DIM_Y * 0.2111)450 &&
+	// } else if (yPos > (DIM_Y * 0.2111)320 && yPos < (DIM_Y * 0.2111)450 &&
 	//   (keystate[RightArrow] || keystate[LeftArrow])) {
 	//     if (keystate[RightArrow] ) {
 	//       vel = [xVel, yVel];
@@ -662,7 +662,7 @@
 	//       vel = [-xVel, -yVel];
 	//     }
 	//   // level 3
-	// } else if (yPos > (this.DIM_Y * 0.2111)455 && yPos < (this.DIM_Y * 0.2111)600 &&
+	// } else if (yPos > (DIM_Y * 0.2111)455 && yPos < (DIM_Y * 0.2111)600 &&
 	//   (keystate[RightArrow] || keystate[LeftArrow])) {
 	//     if (keystate[RightArrow] ) {
 	//       vel = [xVel, -yVel];
@@ -670,7 +670,7 @@
 	//       vel = [-xVel, yVel];
 	//     }
 	//   // level 2
-	// } else if (yPos > (this.DIM_Y * 0.2111)600 && yPos < (this.DIM_Y * 0.2111)720 &&
+	// } else if (yPos > (DIM_Y * 0.2111)600 && yPos < (DIM_Y * 0.2111)720 &&
 	//   (keystate[RightArrow] || keystate[LeftArrow])) {
 	//     if (keystate[RightArrow] ) {
 	//       vel = [xVel, yVel];
@@ -678,7 +678,7 @@
 	//       vel = [-xVel, -yVel];
 	//     }
 	  // level 1
-	} else if (yPos > (this.DIM_Y * 0.7) && yPos < this.DIM_Y &&
+	} else if (yPos > (DIM_Y * 0.7) && yPos < DIM_Y &&
 	  (keystate[RightArrow] || keystate[LeftArrow])) {
 	    if (keystate[RightArrow] ) {
 	      vel = [xVel, -yVel];
@@ -784,7 +784,7 @@
 	      this.vel = [0,0];
 	    }
 	  } else {
-	    this.vel = move(this.pos, keystate);
+	    this.vel = move(this.pos, keystate, this.DIM_X, this.DIM_Y);
 	
 	  }
 	  var tempPos = [ this.pos[0]+this.vel[0],  this.pos[1]+this.vel[1]];

@@ -2,6 +2,7 @@ var Player = function(options) {
   this.pos = options["pos"];
   this.color = "#79CDCD";
   this.game = options["game"];
+  console.log(options);
   this.DIM_X = 700;
   this.DIM_Y = 700;
   this.vel = [0,0];

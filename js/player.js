@@ -2,9 +2,9 @@ var Player = function(options) {
   this.pos = options["pos"];
   this.color = "#79CDCD";
   this.game = options["game"];
-  console.log(options);
-  this.DIM_X = 700;
-  this.DIM_Y = 700;
+  console.log(options["DIM_X"]);
+  this.DIM_X = options["DIM_X"];
+  this.DIM_Y = options["DIM_Y"];
   this.vel = [0,0];
   this.jumping = false;
   this.timeJumping = 0;

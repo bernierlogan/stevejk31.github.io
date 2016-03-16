@@ -651,46 +651,46 @@
 	    } else if ( keystate[LeftArrow]) {
 	      vel = [-xVel, -yVel];
 	    }
-	  // // level 5
-	// } else if (yPos > (DIM_Y * 0.2111)200 && yPos < (DIM_Y * 0.2111)310 &&
-	//   (keystate[RightArrow] || keystate[LeftArrow])) {
-	//     if (keystate[RightArrow] ) {
-	//       vel = [xVel, -yVel];
-	//     } else if ( keystate[LeftArrow]) {
-	//       vel = [-xVel, yVel];
-	//     }
-	//   // level 4
-	// } else if (yPos > (DIM_Y * 0.2111)320 && yPos < (DIM_Y * 0.2111)450 &&
-	//   (keystate[RightArrow] || keystate[LeftArrow])) {
-	//     if (keystate[RightArrow] ) {
-	//       vel = [xVel, yVel];
-	//     } else if ( keystate[LeftArrow]) {
-	//       vel = [-xVel, -yVel];
-	//     }
-	//   // level 3
-	// } else if (yPos > (DIM_Y * 0.2111)455 && yPos < (DIM_Y * 0.2111)600 &&
-	//   (keystate[RightArrow] || keystate[LeftArrow])) {
-	//     if (keystate[RightArrow] ) {
-	//       vel = [xVel, -yVel];
-	//     } else if ( keystate[LeftArrow]) {
-	//       vel = [-xVel, yVel];
-	//     }
-	//   // level 2
-	// } else if (yPos > (DIM_Y * 0.2111)600 && yPos < (DIM_Y * 0.2111)720 &&
-	//   (keystate[RightArrow] || keystate[LeftArrow])) {
-	//     if (keystate[RightArrow] ) {
-	//       vel = [xVel, yVel];
-	//     } else if ( keystate[LeftArrow]) {
-	//       vel = [-xVel, -yVel];
-	//     }
-	  // level 1
-	} else if (yPos > (DIM_Y * 0.7) && yPos < DIM_Y &&
-	  (keystate[RightArrow] || keystate[LeftArrow])) {
-	    if (keystate[RightArrow] ) {
-	      vel = [xVel, -yVel];
-	    } else if ( keystate[LeftArrow]) {
-	      vel = [-xVel, yVel];
-	    }
+	  // level 5
+	} else if (yPos > (DIM_Y * 0.2222) && yPos < (DIM_Y * 0.34) &&
+	    (keystate[RightArrow] || keystate[LeftArrow])) {
+	      if (keystate[RightArrow] ) {
+	        vel = [xVel, -yVel];
+	      } else if ( keystate[LeftArrow]) {
+	        vel = [-xVel, yVel];
+	      }
+	    // level 4
+	  } else if (yPos > (DIM_Y * 0.3555) && yPos < (DIM_Y * 0.5) &&
+	    (keystate[RightArrow] || keystate[LeftArrow])) {
+	      if (keystate[RightArrow] ) {
+	        vel = [xVel, yVel];
+	      } else if ( keystate[LeftArrow]) {
+	        vel = [-xVel, -yVel];
+	      }
+	    // level 3
+	  } else if (yPos > (DIM_Y * 0.5055) && yPos < (DIM_Y * 0.65) &&
+	    (keystate[RightArrow] || keystate[LeftArrow])) {
+	      if (keystate[RightArrow] ) {
+	        vel = [xVel, -yVel];
+	      } else if ( keystate[LeftArrow]) {
+	        vel = [-xVel, yVel];
+	      }
+	    // level 2
+	  } else if (yPos > (DIM_Y * 0.6667) && yPos < (DIM_Y * 0.8) &&
+	    (keystate[RightArrow] || keystate[LeftArrow])) {
+	      if (keystate[RightArrow] ) {
+	        vel = [xVel, yVel];
+	      } else if ( keystate[LeftArrow]) {
+	        vel = [-xVel, -yVel];
+	      }
+	    // level 1
+	  } else if (yPos > (DIM_Y * 0.81) && yPos < DIM_Y &&
+	    (keystate[RightArrow] || keystate[LeftArrow])) {
+	      if (keystate[RightArrow] ) {
+	        vel = [xVel, -yVel];
+	      } else if ( keystate[LeftArrow]) {
+	        vel = [-xVel, yVel];
+	      }
 	  } else {
 	
 	    vel = [0,0];
@@ -740,7 +740,7 @@
 	  if (this.fall) {
 	    this.timeFalling ++;
 	    if (this.timeFalling > 0 && this.timeFalling < 25.9 ) {
-	      this.vel = [0,3.96];
+	      this.vel = [0,this.DIM_Y/227.2727];
 	    } else if (this.timeFalling > 25.9) {
 	      this.fall = false;
 	      this.timeFalling = 0;
@@ -764,10 +764,7 @@
 	    }
 	    if (this.beforeClimbingPos[1]- this.pos[1] >= (this.DIM_Y*0.1188) ) {
 	      this.pos = [this.beforeClimbingPos[0], this.beforeClimbingPos[1]-(this.DIM_Y*0.1188)];
-	      this.climbingCounter ++;
-	    }
-	    if (this.climbingCounter > 5) {
-	      this.vel = 0;
+	      this.vel = [0,0];
 	      this.climbingCounter = 0;
 	      this.climbing = false;
 	    }

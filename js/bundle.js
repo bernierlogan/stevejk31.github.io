@@ -675,7 +675,7 @@
 	      vel = [-xVel, -yVel];
 	    }
 	  // level 1
-	} else if (yPos > (this.DIM_Y * 0.8) && yPos < this.DIM_Y &&
+	} else if (yPos > (this.DIM_Y * 0.7) && yPos < this.DIM_Y &&
 	  (keystate[RightArrow] || keystate[LeftArrow])) {
 	    if (keystate[RightArrow] ) {
 	      vel = [xVel, -yVel];
@@ -765,15 +765,14 @@
 	  } else if (this.jumping) {
 	    this.timeJumping ++;
 	    if (this.timeJumping > 0 && this.timeJumping < 30) {
-	      this.vel = [this.velStore[0]*0.5, -2.3 + this.velStore[1]*0.5];
+	      this.vel = [this.velStore[0]*0.5, -(this.DIM_Y/391) + this.velStore[1]*0.5];
 	    }
 	    if (this.timeJumping > 30 && this.timeJumping < 40) {
 	        this.vel = [this.velStore[0]*0.5, 0 + this.velStore[1]*0.5];
 	
 	    }
 	    if (this.timeJumping > 40 && this.timeJumping < 80){
-	      this.vel = [0,2.3];
-	        this.vel = [this.velStore[0]*0.5, 2.3 + this.velStore[1]*0.5];
+	      this.vel = [this.velStore[0]*0.5, (this.DIM_Y/391) + this.velStore[1]*0.5];
 	
 	    }
 	    if (this.timeJumping > 70) {

@@ -610,19 +610,25 @@
 	var LeftArrow = 37;
 	var RightArrow = 39;
 	var space = 32;90
-	var climbingPos = function (pos) {
-	  if (pos[0] > 645 && pos[0] < 675 && pos[1] > 740 && pos[1] < 790) {
+	var climbingPos = function (pos, DIM_X, DIM_Y) {
+	  //level 1
+	  if (pos[0] > DIM_X * 129/180 && pos[0] < DIM_X * 27/36  &&
+	      pos[1] > DIM_Y * 37/45 && pos[1] < DIM_Y * 79/90) {
 	    return true;
 	  }
+	  //level2
 	  if (pos[0] > 210 && pos[0] < 240 && pos[1] > 600 && pos[1] < 650) {
 	    return true;
 	  }
+	  //level3
 	  if (pos[0] > 645 && pos[0] < 675 && pos[1] > 475 && pos[1] < 525) {
 	    return true;
 	  }
+	  //level4
 	  if (pos[0] > 210 && pos[0] < 240 && pos[1] > 360 && pos[1] < 395) {
 	    return true;
 	  }
+	  //level5
 	  if (pos[0] > 645 && pos[0] < 675 && pos[1] > 200 && pos[1] < 249) {
 	    return true;
 	  }
@@ -639,14 +645,14 @@
 	    console.log(xVel);
 	    console.log(yVel);
 	  }
-	  // // level 6
-	  // if (yPos < (DIM_Y * 0.2111) && yPos > 0 &&
-	  // (keystate[RightArrow] || keystate[LeftArrow])) {
-	  //   if (keystate[RightArrow] ) {
-	  //     vel = [xVel, yVel];
-	  //   } else if ( keystate[LeftArrow]) {
-	  //     vel = [-xVel, -yVel];
-	  //   }
+	  // level 6
+	  if (yPos < (DIM_Y * 0.2111) && yPos > 0 &&
+	  (keystate[RightArrow] || keystate[LeftArrow])) {
+	    if (keystate[RightArrow] ) {
+	      vel = [xVel, yVel];
+	    } else if ( keystate[LeftArrow]) {
+	      vel = [-xVel, -yVel];
+	    }
 	  // // level 5
 	// } else if (yPos > (DIM_Y * 0.2111)200 && yPos < (DIM_Y * 0.2111)310 &&
 	//   (keystate[RightArrow] || keystate[LeftArrow])) {
@@ -680,7 +686,6 @@
 	//       vel = [-xVel, -yVel];
 	//     }
 	  // level 1
-	  if(false){
 	} else if (yPos > (DIM_Y * 0.7) && yPos < DIM_Y &&
 	  (keystate[RightArrow] || keystate[LeftArrow])) {
 	    if (keystate[RightArrow] ) {
@@ -717,7 +722,7 @@
 	      this.fall = true;
 	    }
 	  }
-	  if (climbingPos(this.pos) && keystate[UpArrow] && !this.climbing) {
+	  if (climbingPos(this.pos, this.DIM_X, this.DIM_Y) && keystate[UpArrow] && !this.climbing) {
 	    this.climbing = true;
 	    this.beforeClimbingPos = this.pos;
 	    this.climbingCounter = 0;

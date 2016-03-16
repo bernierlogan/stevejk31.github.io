@@ -82,7 +82,7 @@
 	  this.player = new Player({
 	      pos: [this.DIM_X * 0.025, this.DIM_Y * 0.89],
 	      DIM_X: this.DIM_X,
-	      DIM_y: this.DIM_Y,
+	      DIM_Y: this.DIM_Y,
 	      game:this
 	    });
 	  this.start(ctx);
@@ -544,6 +544,7 @@
 	  this.pos = options["pos"];
 	  this.color = "#79CDCD";
 	  this.game = options["game"];
+	  console.log(options);
 	  this.DIM_X = 700;
 	  this.DIM_Y = 700;
 	  this.vel = [0,0];

@@ -89,47 +89,56 @@ var climbingPos = function (pos) {
 
 var move = function (pos, keystate) {
   var vel = [0,0];
-  if (Math.floor(pos[1]) < 190 && Math.floor(pos[1]) > 0 &&
+  var xVel = this.DIM_X/444;
+  var yVel = this.DIM_X/7826;
+  var yPos = Math.floor(pos[1]);
+  // level 6
+  if (yPos < (this.DIM_Y * 0.2111) && yPos > 0 &&
   (keystate[RightArrow] || keystate[LeftArrow])) {
     if (keystate[RightArrow] ) {
-      vel = [2.025, 0.120];
+      vel = [xVel, yVel];
     } else if ( keystate[LeftArrow]) {
-      vel = [-2.025, -0.120];
+      vel = [-xVel, -yVel];
     }
-  } else if (Math.floor(pos[1]) > 200 && Math.floor(pos[1]) < 310 &&
+  // level 5
+} else if (yPos > 200 && yPos < 310 &&
   (keystate[RightArrow] || keystate[LeftArrow])) {
     if (keystate[RightArrow] ) {
-      vel = [2.025, -0.120];
+      vel = [xVel, -yVel];
     } else if ( keystate[LeftArrow]) {
-      vel = [-2.025, 0.120];
+      vel = [-xVel, yVel];
     }
-  } else if (Math.floor(pos[1]) > 320 && Math.floor(pos[1]) < 450 &&
+  // level 4
+} else if (yPos > 320 && yPos < 450 &&
   (keystate[RightArrow] || keystate[LeftArrow])) {
     if (keystate[RightArrow] ) {
-      vel = [2.025, 0.120];
+      vel = [xVel, yVel];
     } else if ( keystate[LeftArrow]) {
-      vel = [-2.025, -0.120];
+      vel = [-xVel, -yVel];
     }
-  } else if (Math.floor(pos[1]) > 455 && Math.floor(pos[1]) < 600 &&
+  // level 3
+} else if (yPos > 455 && yPos < 600 &&
   (keystate[RightArrow] || keystate[LeftArrow])) {
     if (keystate[RightArrow] ) {
-      vel = [2.025, -0.120];
+      vel = [xVel, -yVel];
     } else if ( keystate[LeftArrow]) {
-      vel = [-2.025, 0.120];
+      vel = [-xVel, yVel];
     }
-  } else if (Math.floor(pos[1]) > 600 && Math.floor(pos[1]) < 720 &&
+  // level 2
+} else if (yPos > 600 && yPos < 720 &&
   (keystate[RightArrow] || keystate[LeftArrow])) {
     if (keystate[RightArrow] ) {
-      vel = [2.025, 0.120];
+      vel = [xVel, yVel];
     } else if ( keystate[LeftArrow]) {
-      vel = [-2.025, -0.120];
+      vel = [-xVel, -yVel];
     }
-  } else if (Math.floor(pos[1]) > 720 && Math.floor(pos[1]) < 900 &&
+  // level 1
+} else if (yPos > 720 && yPos < 900 &&
   (keystate[RightArrow] || keystate[LeftArrow])) {
     if (keystate[RightArrow] ) {
-      vel = [2.025, -0.110];
+      vel = [xVel, -yVel];
     } else if ( keystate[LeftArrow]) {
-      vel = [-2.025, 0.110];
+      vel = [-xVel, yVel];
     }
   } else {
 
@@ -140,7 +149,6 @@ var move = function (pos, keystate) {
 };
 
 Player.prototype.move = function (keystate) {
-
   if (Math.floor(this.pos[0]) >= 723 && Math.floor(this.pos[0]) <= 880 &&
       this.vel[1] > 0 ){
     if (Math.floor(this.pos[1] <= 683) && Math.floor(this.pos[1] >= 653)){

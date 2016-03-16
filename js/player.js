@@ -105,6 +105,7 @@ var move = function (pos, keystate, DIM_X, DIM_Y) {
   if (yPos < (DIM_Y * 0.2111) && yPos > 0 &&
   (keystate[RightArrow] || keystate[LeftArrow])) {
     if (keystate[RightArrow] ) {
+      console.log("level 6");
       vel = [xVel, yVel];
     } else if ( keystate[LeftArrow]) {
       vel = [-xVel, -yVel];
@@ -113,6 +114,7 @@ var move = function (pos, keystate, DIM_X, DIM_Y) {
 } else if (yPos > (DIM_Y * 0.2222) && yPos < (DIM_Y * 0.34) &&
     (keystate[RightArrow] || keystate[LeftArrow])) {
       if (keystate[RightArrow] ) {
+        console.log("level 5");
         vel = [xVel, -yVel];
       } else if ( keystate[LeftArrow]) {
         vel = [-xVel, yVel];
@@ -121,6 +123,7 @@ var move = function (pos, keystate, DIM_X, DIM_Y) {
   } else if (yPos > (DIM_Y * 0.3555) && yPos < (DIM_Y * 0.5) &&
     (keystate[RightArrow] || keystate[LeftArrow])) {
       if (keystate[RightArrow] ) {
+        console.log("level 4");
         vel = [xVel, yVel];
       } else if ( keystate[LeftArrow]) {
         vel = [-xVel, -yVel];
@@ -129,6 +132,7 @@ var move = function (pos, keystate, DIM_X, DIM_Y) {
   } else if (yPos > (DIM_Y * 0.5055) && yPos < (DIM_Y * 0.65) &&
     (keystate[RightArrow] || keystate[LeftArrow])) {
       if (keystate[RightArrow] ) {
+        console.log("level 3");
         vel = [xVel, -yVel];
       } else if ( keystate[LeftArrow]) {
         vel = [-xVel, yVel];
@@ -137,6 +141,8 @@ var move = function (pos, keystate, DIM_X, DIM_Y) {
   } else if (yPos > (DIM_Y * 0.6667) && yPos < (DIM_Y * 0.8) &&
     (keystate[RightArrow] || keystate[LeftArrow])) {
       if (keystate[RightArrow] ) {
+        console.log("level 2");
+
         vel = [xVel, yVel];
       } else if ( keystate[LeftArrow]) {
         vel = [-xVel, -yVel];
@@ -145,6 +151,7 @@ var move = function (pos, keystate, DIM_X, DIM_Y) {
   } else if (yPos > (DIM_Y * 0.81) && yPos < DIM_Y &&
     (keystate[RightArrow] || keystate[LeftArrow])) {
       if (keystate[RightArrow] ) {
+        console.log("level 1");
         vel = [xVel, -yVel];
       } else if ( keystate[LeftArrow]) {
         vel = [-xVel, yVel];

@@ -100,8 +100,6 @@ var move = function (pos, keystate, DIM_X, DIM_Y) {
   var yPos = Math.floor(pos[1]);
   if (keystate[space]) {
     console.log(pos);
-    console.log(xVel);
-    console.log(yVel);
   }
   // level 6
   if (yPos < (DIM_Y * 0.2111) && yPos > 0 &&
@@ -222,8 +220,8 @@ Player.prototype.move = function (keystate) {
     } else {
       this.vel = [0,0]
     }
-    if (this.beforeClimbingPos[1]- this.pos[1] >= 107 ) {
-      this.pos = [this.beforeClimbingPos[0], this.beforeClimbingPos[1]-107];
+    if (this.beforeClimbingPos[1]- this.pos[1] >= (this.DIM_Y*0.1188) ) {
+      this.pos = [this.beforeClimbingPos[0], this.beforeClimbingPos[1]-(this.DIM_Y*0.1188)];
       this.climbingCounter ++;
     }
     if (this.climbingCounter > 5) {

@@ -235,7 +235,7 @@ var distance = function(pos1, pos2) {
 Game.prototype.checkCollisions = function () {
   var game = this;
   for (var i = 0; i < this.barrels.length; i++) {
-    if (distance(this.barrels[i].pos,  this.player.pos) < 23){
+    if (distance(this.barrels[i].pos,  this.player.pos) < this.DIM_X*0.02555){
       this.gameOver = true;
     }
   }

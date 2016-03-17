@@ -302,7 +302,7 @@
 	Game.prototype.checkCollisions = function () {
 	  var game = this;
 	  for (var i = 0; i < this.barrels.length; i++) {
-	    if (distance(this.barrels[i].pos,  this.player.pos) < 23){
+	    if (distance(this.barrels[i].pos,  this.player.pos) < this.DIM_X*0.02555){
 	      this.gameOver = true;
 	    }
 	  }
@@ -568,23 +568,23 @@
 	    return true;
 	  }
 	  //level2
-	  if (pos[0] > DIM_X *  7/10 && pos[0] < DIM_X * 4/15 &&
-	     pos[1] > DIM_Y * 2/3 && pos[1] < DIM_Y * 13/16) {
+	  if (pos[0] > DIM_X *  0.2333 && pos[0] < DIM_X * 0.2666 &&
+	     pos[1] > DIM_Y * 0.6666 && pos[1] < DIM_Y * 0.7222) {
 	    return true;
 	  }
 	  //level3
-	  if (pos[0] > DIM_X *  149/180 && pos[0] < DIM_X *  135/180 &&
-	     pos[1] > DIM_Y * 475/900 && pos[1] < DIM_Y * 525/900) {
+	  if (pos[0] > DIM_X *  0.7166 && pos[0] < DIM_X *  0.75 &&
+	     pos[1] > DIM_Y * 0.5277 && pos[1] < DIM_Y * 0.5833) {
 	    return true;
 	  }
 	  //level4
-	  if (pos[0] > DIM_X *  21/90 && pos[0] < DIM_X *  24/90 &&
-	     pos[1] > DIM_Y * 36/90 && pos[1] < DIM_Y * 395/900) {
+	  if (pos[0] > DIM_X *  0.2333 && pos[0] < DIM_X *  0.2666 &&
+	     pos[1] > DIM_Y * 0.4 && pos[1] < DIM_Y * 0.4388) {
 	    return true;
 	  }
 	  //level5
-	  if (pos[0] > DIM_X *  645/900 && pos[0] < DIM_X *  675/900 &&
-	     pos[1] > DIM_Y * 29 && pos[1] < DIM_Y * 249/900) {
+	  if (pos[0] > DIM_X *  0.7166 && pos[0] < DIM_X *  0.75 &&
+	     pos[1] > DIM_Y * 0.2222 && pos[1] < DIM_Y * 0.2766) {
 	    return true;
 	  }
 	  return false;
@@ -662,23 +662,30 @@
 	};
 	
 	Player.prototype.move = function (keystate) {
-	  if (Math.floor(this.pos[0]) >= 723 && Math.floor(this.pos[0]) <= 880 &&
+	  if (Math.floor(this.pos[0]) >= this.DIM_X * 0.8033 &&
+	      Math.floor(this.pos[0]) <= this.DIM_X * 0.9777 &&
 	      this.vel[1] > 0 ){
-	    if (Math.floor(this.pos[1] <= 683) && Math.floor(this.pos[1] >= 653)){
+	    if (Math.floor(this.pos[1] <= this.DIM_Y * 0.7588) &&
+	        Math.floor(this.pos[1] >= this.DIM_Y * 0.7255)){
 	      this.fall = true;
 	    }
-	    if (Math.floor(this.pos[1] <= 415) && Math.floor(this.pos[1] >= 385)){
+	    if (Math.floor(this.pos[1] <= this.DIM_Y * 0.4611) &&
+	        Math.floor(this.pos[1] >= this.DIM_Y * 0.4277)){
 	      this.fall = true;
 	    }
-	    if (Math.floor(this.pos[1] <= 150) && Math.floor(this.pos[1] >= 100)){
+	    if (Math.floor(this.pos[1] <= this.DIM_Y * 0.1666) &&
+	        Math.floor(this.pos[1] >= this.DIM_Y * 0.1111)){
 	      this.fall = true;
 	    }
-	  } else if (Math.floor(this.pos[0]) >= 20 && Math.floor(this.pos[0]) <= 170 &&
+	  } else if (Math.floor(this.pos[0]) >= this.DIM_X * 0.0222 &&
+	      Math.floor(this.pos[0]) <= this.DIM_X * 0.1888 &&
 	      this.vel[1] > 0 ){
-	    if (Math.floor(this.pos[1] <= 550) && Math.floor(this.pos[1] >= 520)){
+	    if (Math.floor(this.pos[1] <= this.DIM_Y * 0.6111) &&
+	        Math.floor(this.pos[1] >= this.DIM_Y * 0.5777)){
 	      this.fall = true;
 	    }
-	    if (Math.floor(this.pos[1] <= 281) && Math.floor(this.pos[1] >= 240)){
+	    if (Math.floor(this.pos[1] <= this.DIM_Y * 0.3122) &&
+	        Math.floor(this.pos[1] >= this.DIM_Y * 0.2666)){
 	      this.fall = true;
 	    }
 	  }
@@ -702,7 +709,7 @@
 	  if (this.fall) {
 	    this.timeFalling ++;
 	    if (this.timeFalling > 0 && this.timeFalling < 25.9 ) {
-	      this.vel = [0,this.DIM_Y/227.2727];
+	      this.vel = [0,this.DIM_Y/227.2];
 	    } else if (this.timeFalling > 25.9) {
 	      this.fall = false;
 	      this.timeFalling = 0;
@@ -724,8 +731,8 @@
 	    } else {
 	      this.vel = [0,0]
 	    }
-	    if (this.beforeClimbingPos[1]- this.pos[1] >= (this.DIM_Y*0.1188) ) {
-	      this.pos = [this.beforeClimbingPos[0], this.beforeClimbingPos[1]-(this.DIM_Y*0.1188)];
+	    if (this.beforeClimbingPos[1]- this.pos[1] >= (this.DIM_Y*0.119) ) {
+	      this.pos = [this.beforeClimbingPos[0], this.beforeClimbingPos[1]-(this.DIM_Y*0.119)];
 	      this.vel = [0,0];
 	      this.climbingCounter = 0;
 	      this.climbing = false;

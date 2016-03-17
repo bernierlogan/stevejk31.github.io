@@ -36,9 +36,3 @@ Barrel.prototype.move = function(pos, vel) {
   this.pos =[ pos[0]+vel[0],  pos[1]+vel[1]];
 };
 ```
-
-
-### TODO
-* confirm player movement
-* falling
-* climbing multiple levels

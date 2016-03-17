@@ -11,6 +11,9 @@
   min-width: 720px;
 }
 
+#pop-up {
+  text-align: center;
+ }
 #pop-up-instructions {
   list-style: none;
 }

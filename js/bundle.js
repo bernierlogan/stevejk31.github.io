@@ -124,28 +124,37 @@
 	Game.prototype.draw = function (ctx) {
 	
 	  if (this.gameWon) {
+	    ctx.fillStyle = "black";
+	    ctx.fillRect(0, 0, this.DIM_X, this.DIM_Y);
 	    ctx.beginPath();
 	    ctx.font = "120px Inconsolata";
-	    ctx.fillStyle = "#0000FF";
-	    ctx.fillText("Game Won!", this.DIM_X / 7, this.DIM_Y / 2);
+	    ctx.fillStyle = "white";
+	    ctx.fillText("Game Won!", this.DIM_X / 11, this.DIM_Y / 3);
 	    ctx.closePath();
 	    ctx.beginPath();
 	    ctx.font = "50px Inconsolata";
-	    ctx.fillStyle = "#0000FF";
+	    ctx.fillStyle = "white";
 	    ctx.fillText("press [enter] to restart", this.DIM_X / 13, this.DIM_Y * 3 / 4);
 	    ctx.closePath();
 	  } else if (this.gameOver) {
+	    ctx.fillStyle = "black";
+	    ctx.fillRect(0, 0, this.DIM_X, this.DIM_Y);
 	    ctx.beginPath();
 	    ctx.font = "130px Inconsolata";
-	    ctx.fillStyle = "#0000FF";
-	    ctx.fillText("Game Over", this.DIM_X / 8, this.DIM_Y / 2);
+	    ctx.fillStyle = "white";
+	    ctx.fillText("Game Over", this.DIM_X / 11, this.DIM_Y / 3);
 	    ctx.closePath();
 	    ctx.beginPath();
 	    ctx.font = "50px Inconsolata";
-	    ctx.fillStyle = "#0000FF";
+	    ctx.fillStyle = "white";
 	    ctx.fillText("press [enter] to restart", this.DIM_X / 13, this.DIM_Y * 3 / 4);
 	    ctx.closePath();
 	  } else {
+	    ctx.beginPath();
+	    ctx.font = "130px Inconsolata";
+	    ctx.fillStyle = "black";
+	    ctx.fillText("hello", this.DIM_X / 11, this.DIM_Y / 3);
+	    ctx.closePath();
 	    ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
 	    ctx.fillStyle = "orange";
 	    ctx.fillRect(0, 0, this.DIM_X, this.DIM_Y);
@@ -153,14 +162,15 @@
 	    ctx.fillRect(4, 4, this.DIM_X - 8, this.DIM_Y - 8);
 	    //lives
 	    ctx.beginPath();
-	    ctx.font = "45px";
-	    ctx.fillStyle = "#FF69B4";
 	    var tempString = "";
 	    for (var i = 0; i < 3 - this.hitCounter; i++) {
 	      tempString += "♥ ";
 	    }
+	    ctx.fillStyle = "#FF69B4";
+	    ctx.font = "bold 40px Inconsolata";
 	    ctx.fillText(tempString, this.DIM_X * 7 / 10, this.DIM_Y / 14);
 	    ctx.closePath();
+	
 	    //home
 	    ctx.beginPath();
 	    ctx.fillStyle = "#993300";
@@ -20464,10 +20474,10 @@
 	        React.createElement(
 	          'h3',
 	          null,
-	          "make it to the the house and win",
-	          " be sure to avoid the balls",
+	          "make it to the the house and win!",
+	          " Be sure to avoid the balls ",
 	          React.createElement('br', null),
-	          "don't hit the walls!"
+	          "and don't hit the walls"
 	        ),
 	        React.createElement(
 	          'ul',

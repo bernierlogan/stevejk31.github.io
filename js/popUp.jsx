@@ -46,10 +46,10 @@ var PopUp = React.createClass({
           <h1> Welcome to Get Block-O Home</h1>
 
           <h3>
-          {"make it to the the house and win"}
-          {" be sure to avoid the balls"}
+          {"make it to the the house and win!"}
+          {" Be sure to avoid the balls "}
           <br/>
-          {"don't hit the walls!"}
+          {"and don't hit the walls"}
           </h3>
 
 

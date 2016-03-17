@@ -25,7 +25,6 @@ body {
   font-size: 20px;
   height: 100%;
   width: 100%
-  background-color: black;
 }
 
 #canvas {
@@ -52,4 +51,6 @@ body {
   height:100%;
   width:100%;
   margin: auto;
+  background-color: black;
+  
 }

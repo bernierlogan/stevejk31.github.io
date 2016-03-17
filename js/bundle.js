@@ -143,13 +143,23 @@
 	    ctx.beginPath();
 	    ctx.font = "120px Inconsolata";
 	    ctx.fillStyle = "#0000FF";
-	    ctx.fillText("Game Won!", this.DIM_X/5, this.DIM_Y/2);
+	    ctx.fillText("Game Won!", this.DIM_X/7, this.DIM_Y/2);
+	    ctx.closePath();
+	    ctx.beginPath();
+	    ctx.font = "50px Inconsolata";
+	    ctx.fillStyle = "#0000FF";
+	    ctx.fillText("press [enter] to restart", this.DIM_X/13, this.DIM_Y*3/4);
 	    ctx.closePath();
 	  } else if (this.gameOver) {
 	    ctx.beginPath();
-	    ctx.font = "120px Inconsolata";
+	    ctx.font = "130px Inconsolata";
 	    ctx.fillStyle = "#0000FF";
-	    ctx.fillText("Game Over", this.DIM_X/5, this.DIM_Y/2);
+	    ctx.fillText("Game Over", this.DIM_X/8, this.DIM_Y/2);
+	    ctx.closePath();
+	    ctx.beginPath();
+	    ctx.font = "50px Inconsolata";
+	    ctx.fillStyle = "#0000FF";
+	    ctx.fillText("press [enter] to restart", this.DIM_X/13, this.DIM_Y*3/4);
 	    ctx.closePath();
 	
 	  } else {
@@ -168,7 +178,6 @@
 	    }
 	    ctx.fillText(tempString, this.DIM_X*4/5, this.DIM_Y/11);
 	    ctx.closePath();
-	    // ♥
 	    //home
 	    ctx.beginPath();
 	    ctx.fillStyle = "#993300";
@@ -295,6 +304,13 @@
 	    if (keystate[13] === true) {
 	      this.instructionsRendered = true;
 	    }
+	  } else if (this.gameOver || this.gameWon) {
+	    if (keystate[13] === true) {
+	      this.gameOver = false;
+	      this.gameWon = false;
+	      this.player.setPos([this.DIM_X * 0.12, this.DIM_Y * 0.885]);
+	      this.hitCounter = 0;
+	    }
 	  } else {
 	    this.player.move(keystate);
 	  }
@@ -329,7 +345,11 @@
 	  }
 	  if (this.player.pos[0] < 5 || this.player.pos[0] > this.DIM_X - 5 ||
 	    this.player.pos[1] < 5 || this.player.pos[1] > this.DIM_Y - 5 ) {
-	    this.gameOver = true;
+	      this.hitCounter ++;
+	      this.player.setPos([this.DIM_X * 0.12, this.DIM_Y * 0.885]);
+	      if (this.hitCounter === 3) {
+	        this.gameOver = true;
+	      }
 	  }
 	  if (this.player.pos[0] > 5 && this.player.pos[0] < this.DIM_X/10 &&
 	    this.player.pos[1] > 5 && this.player.pos[1] < this.DIM_Y/9 ) {
@@ -755,8 +775,8 @@
 	    } else {
 	      this.vel = [0,0]
 	    }
-	    if (this.beforeClimbingPos[1]- this.pos[1] >= (this.DIM_Y*0.1195) ) {
-	      this.pos = [this.beforeClimbingPos[0], this.beforeClimbingPos[1]-(this.DIM_Y*0.1195)];
+	    if (this.beforeClimbingPos[1]- this.pos[1] >= (this.DIM_Y*0.12) ) {
+	      this.pos = [this.beforeClimbingPos[0], this.beforeClimbingPos[1]-(this.DIM_Y*0.12)];
 	      this.vel = [0,0];
 	      this.climbingCounter = 0;
 	      this.climbing = false;

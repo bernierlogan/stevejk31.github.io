@@ -21,7 +21,8 @@ const customStyles = {
     right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    transform             : 'translate(-50%, -50%)',
+    text-align            : 'center'
   }
 };
 
@@ -42,7 +43,7 @@ var PopUp = React.createClass({
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
           style={customStyles} >
-          <button onClick={this.closeModal}>X</button>
+          <button onClick={this.closeModal} className="close-btn">X</button>
           <h1> Welcome to Get Block-O Home</h1>
 
           <h3>

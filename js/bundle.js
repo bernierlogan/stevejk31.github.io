@@ -20475,10 +20475,10 @@
 	        React.createElement(
 	          'h3',
 	          null,
-	          "make it to the the house and win!",
-	          " Be sure to avoid the balls ",
+	          "Make it to the the house and win!",
+	          " Be sure to avoid ",
 	          React.createElement('br', null),
-	          "and don't hit the walls"
+	          "the balls and don't hit the walls"
 	        ),
 	        React.createElement(
 	          'ul',

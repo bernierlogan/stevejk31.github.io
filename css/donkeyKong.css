@@ -15,7 +15,6 @@
   text-align: center;
  }
 #pop-up-instructions {
-  list-style: none;
 }
 .close-btn {
   float:right;
@@ -52,5 +51,5 @@ body {
   width:100%;
   margin: auto;
   background-color: black;
-  
+
 }

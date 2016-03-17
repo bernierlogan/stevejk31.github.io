@@ -101,13 +101,13 @@ Game.prototype.draw = function(ctx) {
     ctx.fillStyle = "black";
     ctx.fillRect(4,4,this.DIM_X-8,this.DIM_Y-8);
     //lives
-    ctx.font = "bold 45px";
+    ctx.font = "bold 30px";
     ctx.fillStyle = "#FF69B4";
     var tempString = ""
     for (var i = 0; i < (3 - this.hitCounter); i++) {
       tempString += "♥ ";
     }
-    ctx.fillText(tempString, this.DIM_X*4/5, this.DIM_Y/14);
+    ctx.fillText(tempString, this.DIM_X*7/10, this.DIM_Y/14);
     ctx.closePath();
     //home
     ctx.beginPath();

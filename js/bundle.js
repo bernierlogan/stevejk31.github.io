@@ -80,6 +80,7 @@
 	  this.hitCounter = 0;
 	  this.barrels = [];
 	  this.addBarrel();
+	  this.lifeTimer = 0;
 	  this.instructionsRendered = false;
 	  this.player = new Player({
 	      pos: [this.DIM_X * 0.12, this.DIM_Y * 0.885],
@@ -174,9 +175,9 @@
 	    ctx.fillStyle = "#FF69B4";
 	    var tempString = ""
 	    for (var i = 0; i < (3 - this.hitCounter); i++) {
-	      tempString += "♥";
+	      tempString += "♥ ";
 	    }
-	    ctx.fillText(tempString, this.DIM_X*4/5, this.DIM_Y/11);
+	    ctx.fillText(tempString, this.DIM_X*4/5, this.DIM_Y/14);
 	    ctx.closePath();
 	    //home
 	    ctx.beginPath();
@@ -284,6 +285,7 @@
 	    ladder5.draw(ctx);
 	
 	    this.player.draw(ctx);
+	    this.lifeTimer++;
 	
 	    for (var i = 0; i < this.barrels.length; i++) {
 	      this.barrels[i].draw(ctx);
@@ -336,8 +338,11 @@
 	  var game = this;
 	  for (var i = 0; i < this.barrels.length; i++) {
 	    if (distance(this.barrels[i].pos,  this.player.pos) < this.DIM_X*0.02555){
-	      this.hitCounter ++;
-	      this.player.setPos([this.DIM_X * 0.12, this.DIM_Y * 0.885]);
+	      if (this.lifeTimer > 100) {
+	        this.lifeTimer = 0;
+	        this.hitCounter ++;
+	        this.player.setPos([this.DIM_X * 0.12, this.DIM_Y * 0.885]);
+	      }
 	      if (this.hitCounter === 3) {
 	        this.gameOver = true;
 	      }
@@ -345,8 +350,11 @@
 	  }
 	  if (this.player.pos[0] < 5 || this.player.pos[0] > this.DIM_X - 5 ||
 	    this.player.pos[1] < 5 || this.player.pos[1] > this.DIM_Y - 5 ) {
-	      this.hitCounter ++;
-	      this.player.setPos([this.DIM_X * 0.12, this.DIM_Y * 0.885]);
+	      if (this.lifeTimer > 100) {
+	        this.lifeTimer = 0;
+	        this.hitCounter ++;
+	        this.player.setPos([this.DIM_X * 0.12, this.DIM_Y * 0.885]);
+	      }
 	      if (this.hitCounter === 3) {
 	        this.gameOver = true;
 	      }

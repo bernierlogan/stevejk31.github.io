@@ -1,10 +1,20 @@
 var Player = function(options) {
   this.pos = options["pos"];
-  console.log(this.pos);
   this.color = "#79CDCD";
   this.game = options["game"];
   this.DIM_X = options["DIM_X"];
   this.DIM_Y = options["DIM_Y"];
+  this.vel = [0,0];
+  this.jumping = false;
+  this.timeJumping = 0;
+  this.beforeClimbingPos = [0,0];
+  this.climbing = false;
+  this.fall = false;
+  this.timeFalling = 0;
+};
+
+Player.prototype.setPos = function (newPos) {
+  this.pos = newPos;
   this.vel = [0,0];
   this.jumping = false;
   this.timeJumping = 0;
@@ -54,13 +64,11 @@ var move = function (pos, keystate, DIM_X, DIM_Y) {
   var yVel = DIM_X/7826;
   var yPos = Math.floor(pos[1]);
   if (keystate[space]) {
-    console.log(pos);
   }
   // level 6
   if (yPos < (DIM_Y * 0.2111) && yPos > 0 &&
   (keystate[RightArrow] || keystate[LeftArrow])) {
     if (keystate[RightArrow] ) {
-      console.log("level 6");
       vel = [xVel, yVel];
     } else if ( keystate[LeftArrow]) {
       vel = [-xVel, -yVel];
@@ -69,7 +77,6 @@ var move = function (pos, keystate, DIM_X, DIM_Y) {
 } else if (yPos > (DIM_Y * 0.2222) && yPos < (DIM_Y * 0.34) &&
     (keystate[RightArrow] || keystate[LeftArrow])) {
       if (keystate[RightArrow] ) {
-        console.log("level 5");
         vel = [xVel, -yVel];
       } else if ( keystate[LeftArrow]) {
         vel = [-xVel, yVel];
@@ -78,7 +85,6 @@ var move = function (pos, keystate, DIM_X, DIM_Y) {
   } else if (yPos > (DIM_Y * 0.3555) && yPos < (DIM_Y * 0.5) &&
     (keystate[RightArrow] || keystate[LeftArrow])) {
       if (keystate[RightArrow] ) {
-        console.log("level 4");
         vel = [xVel, yVel];
       } else if ( keystate[LeftArrow]) {
         vel = [-xVel, -yVel];
@@ -87,7 +93,6 @@ var move = function (pos, keystate, DIM_X, DIM_Y) {
   } else if (yPos > (DIM_Y * 0.5055) && yPos < (DIM_Y * 0.65) &&
     (keystate[RightArrow] || keystate[LeftArrow])) {
       if (keystate[RightArrow] ) {
-        console.log("level 3");
         vel = [xVel, -yVel];
       } else if ( keystate[LeftArrow]) {
         vel = [-xVel, yVel];
@@ -96,7 +101,6 @@ var move = function (pos, keystate, DIM_X, DIM_Y) {
   } else if (yPos > (DIM_Y * 0.6667) && yPos < (DIM_Y * 0.8) &&
     (keystate[RightArrow] || keystate[LeftArrow])) {
       if (keystate[RightArrow] ) {
-        console.log("level 2");
 
         vel = [xVel, yVel];
       } else if ( keystate[LeftArrow]) {
@@ -106,7 +110,6 @@ var move = function (pos, keystate, DIM_X, DIM_Y) {
   } else if (yPos > (DIM_Y * 0.81) && yPos < DIM_Y &&
     (keystate[RightArrow] || keystate[LeftArrow])) {
       if (keystate[RightArrow] ) {
-        console.log("level 1");
         vel = [xVel, -yVel];
       } else if ( keystate[LeftArrow]) {
         vel = [-xVel, yVel];
@@ -189,8 +192,8 @@ Player.prototype.move = function (keystate) {
     } else {
       this.vel = [0,0]
     }
-    if (this.beforeClimbingPos[1]- this.pos[1] >= (this.DIM_Y*0.119) ) {
-      this.pos = [this.beforeClimbingPos[0], this.beforeClimbingPos[1]-(this.DIM_Y*0.119)];
+    if (this.beforeClimbingPos[1]- this.pos[1] >= (this.DIM_Y*0.1195) ) {
+      this.pos = [this.beforeClimbingPos[0], this.beforeClimbingPos[1]-(this.DIM_Y*0.1195)];
       this.vel = [0,0];
       this.climbingCounter = 0;
       this.climbing = false;

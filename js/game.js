@@ -10,10 +10,12 @@ var Game = function (DIM_X, DIM_Y, ctx) {
   this.DIM_Y = DIM_Y;
   this.gameOver = false;
   this.gameWon = false;
+  this.hitCounter = 0;
   this.barrels = [];
   this.addBarrel();
+  this.instructionsRendered = false;
   this.player = new Player({
-      pos: [this.DIM_X * 0.025, this.DIM_Y * 0.89],
+      pos: [this.DIM_X * 0.12, this.DIM_Y * 0.885],
       DIM_X: this.DIM_X,
       DIM_Y: this.DIM_Y,
       game:this
@@ -50,28 +52,27 @@ Game.prototype.start = function (ctx) {
 Game.prototype.addBarrel = function(ctx) {
    this.barrels.push(new Barrel({game: this, DIM_X: this.DIM_X, DIM_Y: this.DIM_Y}));
 };
-// if (this.gameStart) {
-//   if(!this.instructionsRendered) {
-//     ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
-//     ctx.fillStyle = "black";
-//     ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
-//     ctx.beginPath();
-//     ctx.font = "bold 35px Inconsolata";
-//     ctx.fillStyle = "yellow";
-//     ctx.fillText("GET BLOCKO HOME!!!", this.DIM_X/5, this.DIM_Y/10);
-//     ctx.fillText("be sure to avoid the balls!!!", this.DIM_X/5, this.DIM_Y*2/10);
-//     ctx.fillText("don't hit the walls!!!", this.DIM_X/5, this.DIM_Y*3/10);
-//     ctx.fillText("Instructions:", this.DIM_X/5, this.DIM_Y*4/10);
-//     ctx.fillText("[←] to move blocko left", this.DIM_X/5, this.DIM_Y*5/10);
-//     ctx.fillText("[→] to move blocko right", this.DIM_X/5, this.DIM_Y*6/10);
-//     ctx.fillText("[↑] to climb the ladder", this.DIM_X/5, this.DIM_Y*7/10);
-//     ctx.fillText("[space] to jump", this.DIM_X/5, this.DIM_Y*8/10);
-//     ctx.fillText("press [enter] to start", this.DIM_X/5, this.DIM_Y*9/10);
-//     ctx.closePath();
-//   }
 
 Game.prototype.draw = function(ctx) {
-  if (this.gameWon) {
+
+  if(!this.instructionsRendered) {
+    ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
+    ctx.fillStyle = "black";
+    ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
+    ctx.beginPath();
+    ctx.font = "bold 35px Inconsolata";
+    ctx.fillStyle = "yellow";
+    ctx.fillText("GET BLOCKO HOME!!!", this.DIM_X/5, this.DIM_Y/10);
+    ctx.fillText("be sure to avoid the balls!!!", this.DIM_X/5, this.DIM_Y*2/10);
+    ctx.fillText("don't hit the walls!!!", this.DIM_X/5, this.DIM_Y*3/10);
+    ctx.fillText("Instructions:", this.DIM_X/5, this.DIM_Y*4/10);
+    ctx.fillText("[←] to move blocko left", this.DIM_X/5, this.DIM_Y*5/10);
+    ctx.fillText("[→] to move blocko right", this.DIM_X/5, this.DIM_Y*6/10);
+    ctx.fillText("[↑] to climb the ladder", this.DIM_X/5, this.DIM_Y*7/10);
+    ctx.fillText("[space] to jump", this.DIM_X/5, this.DIM_Y*8/10);
+    ctx.fillText("press [enter] to start", this.DIM_X/5, this.DIM_Y*9/10);
+    ctx.closePath();
+  } else if (this.gameWon) {
     ctx.beginPath();
     ctx.font = "120px Inconsolata";
     ctx.fillStyle = "#0000FF";
@@ -91,6 +92,12 @@ Game.prototype.draw = function(ctx) {
     ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
     ctx.fillStyle = "black";
     ctx.fillRect(4,4,this.DIM_X-8,this.DIM_Y-8);
+    //lives
+    ctx.font = "bold 35px";
+    ctx.fillStyle = "yellow";
+    ctx.fillText("♥", this.DIM_X*4/5, this.DIM_Y/10);
+    ctx.closePath();
+    // ♥
     //home
     ctx.beginPath();
     ctx.fillStyle = "#993300";
@@ -213,7 +220,13 @@ Game.prototype.moveObjects = function(){
 //
 Game.prototype.step = function(keystate){
   this.moveObjects();
-  this.player.move(keystate);
+  if (!this.instructionsRendered) {
+    if (keystate[13] === true) {
+      this.instructionsRendered = true;
+    }
+  } else {
+    this.player.move(keystate);
+  }
   this.checkCollisions();
   for (var i = 0; i < this.barrels.length; i++) {
     if(this.barrels[0].pos[1] > this.DIM_Y){
@@ -236,7 +249,11 @@ Game.prototype.checkCollisions = function () {
   var game = this;
   for (var i = 0; i < this.barrels.length; i++) {
     if (distance(this.barrels[i].pos,  this.player.pos) < this.DIM_X*0.02555){
-      this.gameOver = true;
+      this.hitCounter ++;
+      this.player.setPos([this.DIM_X * 0.12, this.DIM_Y * 0.885]);
+      if (this.hitCounter === 3) {
+        this.gameOver = true;
+      }
     }
   }
   if (this.player.pos[0] < 5 || this.player.pos[0] > this.DIM_X - 5 ||

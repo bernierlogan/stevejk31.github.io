@@ -77,10 +77,12 @@
 	  this.DIM_Y = DIM_Y;
 	  this.gameOver = false;
 	  this.gameWon = false;
+	  this.hitCounter = 0;
 	  this.barrels = [];
 	  this.addBarrel();
+	  this.instructionsRendered = false;
 	  this.player = new Player({
-	      pos: [this.DIM_X * 0.025, this.DIM_Y * 0.89],
+	      pos: [this.DIM_X * 0.12, this.DIM_Y * 0.885],
 	      DIM_X: this.DIM_X,
 	      DIM_Y: this.DIM_Y,
 	      game:this
@@ -117,28 +119,27 @@
 	Game.prototype.addBarrel = function(ctx) {
 	   this.barrels.push(new Barrel({game: this, DIM_X: this.DIM_X, DIM_Y: this.DIM_Y}));
 	};
-	// if (this.gameStart) {
-	//   if(!this.instructionsRendered) {
-	//     ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
-	//     ctx.fillStyle = "black";
-	//     ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
-	//     ctx.beginPath();
-	//     ctx.font = "bold 35px Inconsolata";
-	//     ctx.fillStyle = "yellow";
-	//     ctx.fillText("GET BLOCKO HOME!!!", this.DIM_X/5, this.DIM_Y/10);
-	//     ctx.fillText("be sure to avoid the balls!!!", this.DIM_X/5, this.DIM_Y*2/10);
-	//     ctx.fillText("don't hit the walls!!!", this.DIM_X/5, this.DIM_Y*3/10);
-	//     ctx.fillText("Instructions:", this.DIM_X/5, this.DIM_Y*4/10);
-	//     ctx.fillText("[←] to move blocko left", this.DIM_X/5, this.DIM_Y*5/10);
-	//     ctx.fillText("[→] to move blocko right", this.DIM_X/5, this.DIM_Y*6/10);
-	//     ctx.fillText("[↑] to climb the ladder", this.DIM_X/5, this.DIM_Y*7/10);
-	//     ctx.fillText("[space] to jump", this.DIM_X/5, this.DIM_Y*8/10);
-	//     ctx.fillText("press [enter] to start", this.DIM_X/5, this.DIM_Y*9/10);
-	//     ctx.closePath();
-	//   }
 	
 	Game.prototype.draw = function(ctx) {
-	  if (this.gameWon) {
+	
+	  if(!this.instructionsRendered) {
+	    ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
+	    ctx.fillStyle = "black";
+	    ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
+	    ctx.beginPath();
+	    ctx.font = "bold 35px Inconsolata";
+	    ctx.fillStyle = "yellow";
+	    ctx.fillText("GET BLOCKO HOME!!!", this.DIM_X/5, this.DIM_Y/10);
+	    ctx.fillText("be sure to avoid the balls!!!", this.DIM_X/5, this.DIM_Y*2/10);
+	    ctx.fillText("don't hit the walls!!!", this.DIM_X/5, this.DIM_Y*3/10);
+	    ctx.fillText("Instructions:", this.DIM_X/5, this.DIM_Y*4/10);
+	    ctx.fillText("[←] to move blocko left", this.DIM_X/5, this.DIM_Y*5/10);
+	    ctx.fillText("[→] to move blocko right", this.DIM_X/5, this.DIM_Y*6/10);
+	    ctx.fillText("[↑] to climb the ladder", this.DIM_X/5, this.DIM_Y*7/10);
+	    ctx.fillText("[space] to jump", this.DIM_X/5, this.DIM_Y*8/10);
+	    ctx.fillText("press [enter] to start", this.DIM_X/5, this.DIM_Y*9/10);
+	    ctx.closePath();
+	  } else if (this.gameWon) {
 	    ctx.beginPath();
 	    ctx.font = "120px Inconsolata";
 	    ctx.fillStyle = "#0000FF";
@@ -158,6 +159,12 @@
 	    ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
 	    ctx.fillStyle = "black";
 	    ctx.fillRect(4,4,this.DIM_X-8,this.DIM_Y-8);
+	    //lives
+	    ctx.font = "bold 35px";
+	    ctx.fillStyle = "yellow";
+	    ctx.fillText("♥", this.DIM_X*4/5, this.DIM_Y/10);
+	    ctx.closePath();
+	    // ♥
 	    //home
 	    ctx.beginPath();
 	    ctx.fillStyle = "#993300";
@@ -280,7 +287,13 @@
 	//
 	Game.prototype.step = function(keystate){
 	  this.moveObjects();
-	  this.player.move(keystate);
+	  if (!this.instructionsRendered) {
+	    if (keystate[13] === true) {
+	      this.instructionsRendered = true;
+	    }
+	  } else {
+	    this.player.move(keystate);
+	  }
 	  this.checkCollisions();
 	  for (var i = 0; i < this.barrels.length; i++) {
 	    if(this.barrels[0].pos[1] > this.DIM_Y){
@@ -303,7 +316,11 @@
 	  var game = this;
 	  for (var i = 0; i < this.barrels.length; i++) {
 	    if (distance(this.barrels[i].pos,  this.player.pos) < this.DIM_X*0.02555){
-	      this.gameOver = true;
+	      this.hitCounter ++;
+	      this.player.setPos([this.DIM_X * 0.12, this.DIM_Y * 0.885]);
+	      if (this.hitCounter === 3) {
+	        this.gameOver = true;
+	      }
 	    }
 	  }
 	  if (this.player.pos[0] < 5 || this.player.pos[0] > this.DIM_X - 5 ||
@@ -542,11 +559,21 @@
 
 	var Player = function(options) {
 	  this.pos = options["pos"];
-	  console.log(this.pos);
 	  this.color = "#79CDCD";
 	  this.game = options["game"];
 	  this.DIM_X = options["DIM_X"];
 	  this.DIM_Y = options["DIM_Y"];
+	  this.vel = [0,0];
+	  this.jumping = false;
+	  this.timeJumping = 0;
+	  this.beforeClimbingPos = [0,0];
+	  this.climbing = false;
+	  this.fall = false;
+	  this.timeFalling = 0;
+	};
+	
+	Player.prototype.setPos = function (newPos) {
+	  this.pos = newPos;
 	  this.vel = [0,0];
 	  this.jumping = false;
 	  this.timeJumping = 0;
@@ -596,13 +623,11 @@
 	  var yVel = DIM_X/7826;
 	  var yPos = Math.floor(pos[1]);
 	  if (keystate[space]) {
-	    console.log(pos);
 	  }
 	  // level 6
 	  if (yPos < (DIM_Y * 0.2111) && yPos > 0 &&
 	  (keystate[RightArrow] || keystate[LeftArrow])) {
 	    if (keystate[RightArrow] ) {
-	      console.log("level 6");
 	      vel = [xVel, yVel];
 	    } else if ( keystate[LeftArrow]) {
 	      vel = [-xVel, -yVel];
@@ -611,7 +636,6 @@
 	} else if (yPos > (DIM_Y * 0.2222) && yPos < (DIM_Y * 0.34) &&
 	    (keystate[RightArrow] || keystate[LeftArrow])) {
 	      if (keystate[RightArrow] ) {
-	        console.log("level 5");
 	        vel = [xVel, -yVel];
 	      } else if ( keystate[LeftArrow]) {
 	        vel = [-xVel, yVel];
@@ -620,7 +644,6 @@
 	  } else if (yPos > (DIM_Y * 0.3555) && yPos < (DIM_Y * 0.5) &&
 	    (keystate[RightArrow] || keystate[LeftArrow])) {
 	      if (keystate[RightArrow] ) {
-	        console.log("level 4");
 	        vel = [xVel, yVel];
 	      } else if ( keystate[LeftArrow]) {
 	        vel = [-xVel, -yVel];
@@ -629,7 +652,6 @@
 	  } else if (yPos > (DIM_Y * 0.5055) && yPos < (DIM_Y * 0.65) &&
 	    (keystate[RightArrow] || keystate[LeftArrow])) {
 	      if (keystate[RightArrow] ) {
-	        console.log("level 3");
 	        vel = [xVel, -yVel];
 	      } else if ( keystate[LeftArrow]) {
 	        vel = [-xVel, yVel];
@@ -638,7 +660,6 @@
 	  } else if (yPos > (DIM_Y * 0.6667) && yPos < (DIM_Y * 0.8) &&
 	    (keystate[RightArrow] || keystate[LeftArrow])) {
 	      if (keystate[RightArrow] ) {
-	        console.log("level 2");
 	
 	        vel = [xVel, yVel];
 	      } else if ( keystate[LeftArrow]) {
@@ -648,7 +669,6 @@
 	  } else if (yPos > (DIM_Y * 0.81) && yPos < DIM_Y &&
 	    (keystate[RightArrow] || keystate[LeftArrow])) {
 	      if (keystate[RightArrow] ) {
-	        console.log("level 1");
 	        vel = [xVel, -yVel];
 	      } else if ( keystate[LeftArrow]) {
 	        vel = [-xVel, yVel];
@@ -731,8 +751,8 @@
 	    } else {
 	      this.vel = [0,0]
 	    }
-	    if (this.beforeClimbingPos[1]- this.pos[1] >= (this.DIM_Y*0.119) ) {
-	      this.pos = [this.beforeClimbingPos[0], this.beforeClimbingPos[1]-(this.DIM_Y*0.119)];
+	    if (this.beforeClimbingPos[1]- this.pos[1] >= (this.DIM_Y*0.1195) ) {
+	      this.pos = [this.beforeClimbingPos[0], this.beforeClimbingPos[1]-(this.DIM_Y*0.1195)];
 	      this.vel = [0,0];
 	      this.climbingCounter = 0;
 	      this.climbing = false;

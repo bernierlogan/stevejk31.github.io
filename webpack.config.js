@@ -1,12 +1,25 @@
 module.exports = {
   context: __dirname,
-  entry: "./js/main.js",
+  entry: "./js/main.jsx",
   output: {
     path: "./js",
     publicPath: "/js/",
     filename: "bundle.js",
-    devtoolModuleFilenameTemplate: '[resourcePath]',
-    devtoolFallbackModuleFilenameTemplate: '[resourcePath]?[hash]'
   },
-  devtool: 'source-maps'
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+        query: {
+          presets: ['react']
+        }
+      }
+    ]
+  },
+  devtool: 'source-map',
+  resolve: {
+    extensions: ["", ".js", ".jsx"]
+  }
 };

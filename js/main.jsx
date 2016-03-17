@@ -1,6 +1,10 @@
 var Game = require('./game.js');
 var WIDTH  = 700;
 var HEIGHT = 700;
+var ReactDOM = require('react-dom');
+var React = require('react');
+var PopUp = require('./popUp.jsx');
+
 
 
 function main() {
@@ -11,5 +15,6 @@ function main() {
   game.start(ctx);
 }
 
-
 main();
+var appElement = document.getElementById('welcome-popup');
+ReactDOM.render(<PopUp/>, appElement);

@@ -14,7 +14,6 @@ var Game = function (DIM_X, DIM_Y, ctx) {
   this.barrels = [];
   this.addBarrel();
   this.lifeTimer = 0;
-  this.instructionsRendered = false;
   this.player = new Player({
       pos: [this.DIM_X * 0.12, this.DIM_Y * 0.885],
       DIM_X: this.DIM_X,
@@ -56,21 +55,7 @@ Game.prototype.addBarrel = function(ctx) {
 
 Game.prototype.draw = function(ctx) {
 
-  if(!this.instructionsRendered) {
-    ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
-    ctx.fillStyle = "black";
-    ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
-    ctx.beginPath();
-    ctx.font = "bold 35px Inconsolata";
-    ctx.fillStyle = "yellow";
-    ctx.fillText("Controlls:", this.DIM_X/5, this.DIM_Y*2/10);
-    ctx.fillText("[←] to move blocko left", this.DIM_X/5, this.DIM_Y*3/10);
-    ctx.fillText("[→] to move blocko right", this.DIM_X/5, this.DIM_Y*4/10);
-    ctx.fillText("[↑] to climb the ladder", this.DIM_X/5, this.DIM_Y*5/10);
-    ctx.fillText("[space] to jump", this.DIM_X/5, this.DIM_Y*6/10);
-    ctx.fillText("press [enter] to start", this.DIM_X/5, this.DIM_Y*7/10);
-    ctx.closePath();
-  } else if (this.gameWon) {
+if (this.gameWon) {
     ctx.beginPath();
     ctx.font = "120px Inconsolata";
     ctx.fillStyle = "#0000FF";
@@ -94,14 +79,14 @@ Game.prototype.draw = function(ctx) {
     ctx.closePath();
 
   } else {
-
     ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
     ctx.fillStyle = "orange";
     ctx.fillRect(0,0,this.DIM_X,this.DIM_Y);
     ctx.fillStyle = "black";
     ctx.fillRect(4,4,this.DIM_X-8,this.DIM_Y-8);
     //lives
-    ctx.font = "bold 30px";
+    ctx.beginPath();
+    ctx.font = "45px";
     ctx.fillStyle = "#FF69B4";
     var tempString = ""
     for (var i = 0; i < (3 - this.hitCounter); i++) {
@@ -232,11 +217,7 @@ Game.prototype.moveObjects = function(){
 //
 Game.prototype.step = function(keystate){
   this.moveObjects();
-  if (!this.instructionsRendered) {
-    if (keystate[13] === true) {
-      this.instructionsRendered = true;
-    }
-  } else if (this.gameOver || this.gameWon) {
+  if (this.gameOver || this.gameWon) {
     if (keystate[13] === true) {
       this.gameOver = false;
       this.gameWon = false;

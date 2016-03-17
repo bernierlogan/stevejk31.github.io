@@ -1,0 +1,33 @@
+{
+  "name": "stevejk31.github.io",
+  "version": "1.0.0",
+  "description": "Javascript Game inspired by Atari's Donkey Kong",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "console.log(\"success\")"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stevejk31/stevejk31.github.io.git"
+  },
+  "keywords": [
+    "Javascript",
+    "HTML5",
+    "CSS3"
+  ],
+  "author": "Steve Kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stevejk31/stevejk31.github.io/issues"
+  },
+  "homepage": "https://github.com/stevejk31/stevejk31.github.io",
+  "dependencies": {
+    "babel-core": "^6.7.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-react": "^6.5.0",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-modal": "^0.6.1",
+    "webpack": "^1.12.14"
+  }
+}

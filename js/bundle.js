@@ -160,28 +160,6 @@
 	    ctx.fillRect(0, 0, this.DIM_X, this.DIM_Y);
 	    ctx.fillStyle = "black";
 	    ctx.fillRect(4, 4, this.DIM_X - 8, this.DIM_Y - 8);
-	    //lives
-	    ctx.beginPath();
-	    var tempString = "";
-	    for (var i = 0; i < 3 - this.hitCounter; i++) {
-	      tempString += "♥ ";
-	    }
-	    ctx.fillStyle = "#FF69B4";
-	    ctx.font = "bold 40px Inconsolata";
-	    ctx.fillText(tempString, this.DIM_X * 7 / 10, this.DIM_Y / 14);
-	    ctx.closePath();
-	
-	    //home
-	    ctx.beginPath();
-	    ctx.fillStyle = "#993300";
-	    ctx.fillRect(this.DIM_X / 30, this.DIM_Y / 22.5, this.DIM_X / 18, this.DIM_Y / 18);
-	    ctx.closePath();
-	    ctx.beginPath();
-	    ctx.fillStyle = "#993300";
-	    ctx.moveTo(this.DIM_X / 36, this.DIM_Y / 22.5);
-	    ctx.lineTo(this.DIM_X / 10.59, this.DIM_Y / 22.5);
-	    ctx.lineTo(this.DIM_X / 16.36, this.DIM_Y / 90);
-	    ctx.fill();
 	    // grid
 	    for (var i = 0; i < 9; i++) {
 	      ctx.beginPath();
@@ -201,6 +179,29 @@
 	      ctx.stroke();
 	      ctx.closePath();
 	    }
+	    //lives
+	    ctx.beginPath();
+	    var tempString = "";
+	    for (var i = 0; i < 3 - this.hitCounter; i++) {
+	      tempString += "♥ ";
+	    }
+	    ctx.fillStyle = "#FF69B4";
+	    ctx.font = "bold 40px Inconsolata";
+	    ctx.fillText(tempString, this.DIM_X * 4 / 5, this.DIM_Y / 14);
+	    ctx.closePath();
+	
+	    //home
+	    ctx.beginPath();
+	    ctx.fillStyle = "#993300";
+	    ctx.fillRect(this.DIM_X / 30, this.DIM_Y / 22.5, this.DIM_X / 18, this.DIM_Y / 18);
+	    ctx.closePath();
+	    ctx.beginPath();
+	    ctx.fillStyle = "#993300";
+	    ctx.moveTo(this.DIM_X / 36, this.DIM_Y / 22.5);
+	    ctx.lineTo(this.DIM_X / 10.59, this.DIM_Y / 22.5);
+	    ctx.lineTo(this.DIM_X / 16.36, this.DIM_Y / 90);
+	    ctx.fill();
+	
 	    var beam1 = new Beam({
 	      startPos: [0, this.DIM_Y * 0.1],
 	      endPos: [this.DIM_X * 0.8, this.DIM_Y * 0.15],

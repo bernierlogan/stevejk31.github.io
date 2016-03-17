@@ -192,8 +192,8 @@ Player.prototype.move = function (keystate) {
     } else {
       this.vel = [0,0]
     }
-    if (this.beforeClimbingPos[1]- this.pos[1] >= (this.DIM_Y*0.12) ) {
-      this.pos = [this.beforeClimbingPos[0], this.beforeClimbingPos[1]-(this.DIM_Y*0.12)];
+    if (this.beforeClimbingPos[1]- this.pos[1] >= (this.DIM_Y*0.1205) ) {
+      this.pos = [this.beforeClimbingPos[0], this.beforeClimbingPos[1]-(this.DIM_Y*0.1205)];
       this.vel = [0,0];
       this.climbingCounter = 0;
       this.climbing = false;

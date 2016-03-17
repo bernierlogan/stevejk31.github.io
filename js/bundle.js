@@ -171,7 +171,7 @@
 	    ctx.fillStyle = "black";
 	    ctx.fillRect(4,4,this.DIM_X-8,this.DIM_Y-8);
 	    //lives
-	    ctx.font = "bold 35px";
+	    ctx.font = "bold 45px";
 	    ctx.fillStyle = "#FF69B4";
 	    var tempString = ""
 	    for (var i = 0; i < (3 - this.hitCounter); i++) {
